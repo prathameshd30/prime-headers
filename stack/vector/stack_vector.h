@@ -15,14 +15,18 @@
     NAME *new_##NAME(void);                                                                                                                                                                                       \
     bool isEmpty_##NAME(const NAME *const);                                                                                                                                                                       \
     bool push_##NAME(NAME *, TYPE);                                                                                                                                                                               \
-    bool pop_##NAME(NAME *);                                                                                                                                                                              \
-    bool top_##NAME(const NAME* const, TYPE *);                                                                                                                                                                                \
-    bool delete_##NAME(NAME *, bool (*delete_##TYPE)(TYPE)); /*Should there be a delete stack operation which will be provided a deleteType function?                                                          */ \
-    void print_##NAME(const NAME* const, void (*print_##TYPE)(TYPE));\
+    bool pop_##NAME(NAME *);                                                                                                                                                                                      \
+    bool top_##NAME(const NAME *const, TYPE *);                                                                                                                                                                   \
+    bool delete_##NAME(NAME *, bool (*delete_##TYPE)(TYPE*)); /*Should there be a delete stack operation which will be provided a deleteType function?                                                          */ \
+    void print_##NAME(const NAME *const, void (*print_##TYPE)(TYPE));                                                                                                                                             \
     NAME *new_##NAME(void)                                                                                                                                                                                        \
     {                                                                                                                                                                                                             \
         NAME *new_obj = malloc(sizeof(NAME));                                                                                                                                                                     \
-        new_obj->top = -1;                                                                                                                                                                                        \
+        if (!new_obj)                                                                                                                                                                                             \
+        {                                                                                                                                                                                                         \
+            return NULL;                                                                                                                                                                                          \
+        }                                                                                                                                                                                                         \
+        new_obj->top = -1;                                                                                                                                                                                      \
         new_obj->data = NULL;                                                                                                                                                                                     \
         return new_obj;                                                                                                                                                                                           \
     }                                                                                                                                                                                                             \
@@ -55,7 +59,7 @@
         {                                                                                                                                                                                                         \
             return false;                                                                                                                                                                                         \
         }                                                                                                                                                                                                         \
-        if (isEmpty_##NAME(obj_pointer))                                                                                                                                                                         \
+        if (isEmpty_##NAME(obj_pointer))                                                                                                                                                                          \
         {                                                                                                                                                                                                         \
             return false;                                                                                                                                                                                         \
         }                                                                                                                                                                                                         \
@@ -76,7 +80,7 @@
         {                                                                                                                                                                                                         \
             return false;                                                                                                                                                                                         \
         }                                                                                                                                                                                                         \
-        if (isEmpty_##NAME(obj_pointer))                                                                                                                                                                         \
+        if (isEmpty_##NAME(obj_pointer))                                                                                                                                                                          \
         {                                                                                                                                                                                                         \
             return false;                                                                                                                                                                                         \
         }                                                                                                                                                                                                         \
@@ -98,14 +102,16 @@
         }                                                                                                                                                                                                         \
         free(obj_pointer);                                                                                                                                                                                        \
         return true;                                                                                                                                                                                              \
-    }\
-    void print_##NAME(const NAME* const obj_pointer, void (*print_##TYPE)(TYPE)){\
-        if(!obj_pointer){\
-            return;\
-        }\
-        for (int64_t i = obj_pointer->top; i >= 0; --i)\
-        {\
-            print_##TYPE(obj_pointer->data[i]);\
-        }\
+    }                                                                                                                                                                                                             \
+    void print_##NAME(const NAME *const obj_pointer, void (*print_##TYPE)(TYPE))                                                                                                                                  \
+    {                                                                                                                                                                                                             \
+        if (!obj_pointer)                                                                                                                                                                                         \
+        {                                                                                                                                                                                                         \
+            return;                                                                                                                                                                                               \
+        }                                                                                                                                                                                                         \
+        for (int64_t i = obj_pointer->top; i >= 0; --i)                                                                                                                                                           \
+        {                                                                                                                                                                                                         \
+            print_##TYPE(obj_pointer->data[i]);                                                                                                                                                                   \
+        }                                                                                                                                                                                                         \
     }
 #endif

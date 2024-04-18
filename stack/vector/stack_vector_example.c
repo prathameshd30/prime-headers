@@ -16,5 +16,6 @@ int main(int argc, char const *argv[])
     putc('\n',stdout);
     pop_intStack(ist);
     print_intStack(ist, printInt);
+    delete_intStack(ist,NULL);
     return 0;
 }
