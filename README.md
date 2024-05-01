@@ -30,7 +30,7 @@ It works primarily by abusing the C preprocessor to a scale hitherto undreamt of
 - [ ] Linear Search
 - [ ] Binary Search
 - [x] Bubble Sort
-- [ ] Selection Sort
+- [x] Selection Sort
 - [x] Insertion Sort
 - [ ] Merge Sort
 - [ ] Quick sort
@@ -43,7 +43,7 @@ It works primarily by abusing the C preprocessor to a scale hitherto undreamt of
 
 ### Cons
 
-1. This method is optimised for ease of use, however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
+1. This method is optimised for ease of use (probably for beginners because it primarily works with pointers to structs), however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
 2. **Poor support** (slow) for Intellisense and similar code intelligence tools.
 
 > This project is a side-effect of trying to develop a command-line tool for easier use of generic data structures, which splits the interface and the function definitions, leading to better compilation times.
@@ -51,6 +51,6 @@ It works primarily by abusing the C preprocessor to a scale hitherto undreamt of
 
 ## Some helpful projects which helped me develop this
 
-Thought this was an original idea, but this repository I found later implemented this already - https://github.com/mystborn/GenericDataStructures
+1. Thought this was an original idea, but this repository I found later implemented this already - https://github.com/mystborn/GenericDataStructures
 
-I got the idea for the need of type-safe data structures by seeing this repository, otherwise it is perfect, especially the error handling is **chef's kiss** - https://github.com/MostafaTwfiq/C-DataStructures-And-Algorithms
+2. I got the idea for the need of type-safe data structures by seeing this repository, otherwise it is perfect, especially the error handling is **chef's kiss** - https://github.com/MostafaTwfiq/C-DataStructures-And-Algorithms
