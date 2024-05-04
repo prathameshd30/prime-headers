@@ -1,3 +1,13 @@
+/**
+ * @file selection_sort.h
+ * @author Prathamesh Deshpande
+ * @brief 
+ * @version 0.1
+ * @date 2024-05-05
+ * 
+ * 
+ */
+
 #ifndef SELECTION_SORT_H
 #define SELECTION_SORT_H
 

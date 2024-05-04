@@ -1,3 +1,12 @@
+/**
+ * @file stack_vector.h
+ * @author Prathamesh Deshpande
+ * @brief 
+ * @version 0.1
+ * @date 2024-05-05
+ *
+ * 
+ */
 #ifndef STACK_VECTOR_H
 #define STACK_VECTOR_H
 

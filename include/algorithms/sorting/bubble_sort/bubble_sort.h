@@ -1,3 +1,12 @@
+/**
+ * @file bubble_sort.h
+ * @author Prathamesh Deshpande
+ * @brief 
+ * @version 0.1
+ * @date 2024-05-04
+ * 
+ * 
+ */
 #ifndef BUBBLE_SORT_H
 #define BUBBLE_SORT_H
 

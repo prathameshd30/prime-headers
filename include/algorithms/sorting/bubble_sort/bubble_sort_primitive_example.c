@@ -1,6 +1,14 @@
+/**
+ * @file bubble_sort_primitive_example.c
+ * @author Prathamesh Deshpande
+ * @brief 
+ * @version 0.1
+ * @date 2024-05-04
+ * 
+ * 
+ */
 #include <stdio.h>
 #include "bubble_sort.h"
-
 DEFINE_BUBBLE_SORT(int);
 
 #define SIZE 10

@@ -1,3 +1,12 @@
+/**
+ * @file vector.h
+ * @author Prathamesh Deshpande
+ * @brief 
+ * @version 0.1
+ * @date 2024-05-04
+ * 
+ * 
+ */
 #ifndef VECTOR_H
 #define VECTOR_H
 
@@ -37,7 +46,18 @@ bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
         *val = NULL;\
         return false;\
     }\
-}
+    return obj->data[index];\
+}\
+bool set_at_##NAME(NAME* obj, uint64_t index, TYPE val){\
+    if(!obj){\
+        return false;\
+    }\
+    if(index > obj->size -1){\
+        return false;\
+    }\
+    obj->data[index] = val;\
+    return true;\
+}\
 
 
 
