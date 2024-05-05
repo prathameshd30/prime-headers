@@ -13,7 +13,7 @@ It works primarily by abusing the C preprocessor to a scale hitherto undreamt of
 
 > The project is a work in progress, with an emphasis on getting things working first. Apologies for the ugly/(currently wrong) code.
 
-- [ ] Vector
+- [x] Vector
 - [x] Stack using Vector
 - [ ] Stack using Linked List
 - [ ] Stack using 2 Queues

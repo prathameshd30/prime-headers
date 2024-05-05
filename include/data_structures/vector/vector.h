@@ -43,7 +43,7 @@ bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
         return false;\
     }\
     if(index > obj->size - 1){\
-        *val = NULL;\
+        val = NULL;\
         return false;\
     }\
     return obj->data[index];\
@@ -70,7 +70,7 @@ bool add_at_end_##NAME(NAME* obj, TYPE val){\
     obj->data[obj->size - 1] = val;\
     return true;\
 }\
-bool add_at_beginning_#NAME(NAME* obj, TYPE val){\
+bool add_at_beginning_##NAME(NAME* obj, TYPE val){\
     if(!obj){\
         return false;\
     }\
@@ -108,13 +108,18 @@ bool remove_from_end_##NAME(NAME* obj, TYPE* val){\
     if(val){\
         *val = obj->data[obj->size-1];\
     }\
+    --obj->size;\
     obj->data = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
     if(!obj->data){\
         return false;\
     }\
     return true;\
 }\
-
+void print_##NAME(NAME* obj, void (*print_##TYPE)(TYPE)){\
+    for(uint64_t i = 0; i < obj->size; ++i){\
+        print_##TYPE(obj->data[i]);\
+    }\
+}\
 
 
 
