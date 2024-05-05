@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2024-05-04
  * 
- * 
+ * This implementation of vector does not preallocate memory to save time, as I intend for this to be a simple-to-understand implementation rather than the 'best' one
  */
 #ifndef VECTOR_H
 #define VECTOR_H
@@ -56,6 +56,62 @@ bool set_at_##NAME(NAME* obj, uint64_t index, TYPE val){\
         return false;\
     }\
     obj->data[index] = val;\
+    return true;\
+}\
+bool add_at_end_##NAME(NAME* obj, TYPE val){\
+    if(!obj){\
+        return false;\
+    }\
+    obj->data = realloc(obj->data, (obj->size +1)* sizeof(TYPE));\
+    if(!obj->data){\
+        return false;\
+    }\
+    ++obj->size;\
+    obj->data[obj->size - 1] = val;\
+    return true;\
+}\
+bool add_at_beginning_#NAME(NAME* obj, TYPE val){\
+    if(!obj){\
+        return false;\
+    }\
+    obj->data = realloc(obj->data, (obj->size + 1) * sizeof(TYPE));\
+    if(!obj->data){\
+        return false;\
+    }\
+    ++obj->size;\
+    for(uint64_t i = obj->size - 1; i>0; --i){\
+        obj->data[i] = obj->data[i-1];\
+    }\
+    obj->data[0] = val;\
+    return true;\
+}\
+bool remove_from_beginning_##NAME(NAME* obj, TYPE* val){\
+    if(!obj){\
+        return false;\
+    }\
+    if(val){\
+        *val = obj->data[0];\
+    }\
+    for(uint64_t i = 1; i<obj->size; ++i){\
+        obj->data[i-1] = obj->data[i];\
+    }\
+    obj->data = realloc(obj->data, (obj->size-1) * sizeof(TYPE));\
+    if(!obj->data){\
+        return false;\
+    }\
+    return true;\
+}\
+bool remove_from_end_##NAME(NAME* obj, TYPE* val){\
+    if(!obj){\
+        return false;\
+    }\
+    if(val){\
+        *val = obj->data[obj->size-1];\
+    }\
+    obj->data = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
+    if(!obj->data){\
+        return false;\
+    }\
     return true;\
 }\
 

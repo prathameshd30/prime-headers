@@ -5,7 +5,13 @@ Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way 
 
 It works primarily by abusing the C preprocessor to a scale hitherto undreamt of.
 
-### Data structures implemented
+### To Do
+- [ ] Look into GitHub actions based testing
+- [ ] Write primitive as well as pointer-to-structs examples
+
+### Data structures and algorithms implemented
+
+> The project is a work in progress, with an emphasis on getting things working first. Apologies for the ugly/(currently wrong) code.
 
 - [ ] Vector
 - [x] Stack using Vector
