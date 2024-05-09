@@ -14,7 +14,7 @@ It works primarily by abusing the C preprocessor to a scale hitherto undreamt of
 > The project is a work in progress, with an emphasis on getting things working first. Apologies for the ugly/(currently wrong) code.
 
 - [x] Vector
-- [x] Stack using Vector
+- [x] Stack using Vector (Rewrite using own vector)
 - [ ] Stack using Linked List
 - [ ] Stack using 2 Queues
 - [ ] Queue using Vector
