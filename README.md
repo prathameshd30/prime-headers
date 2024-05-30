@@ -3,7 +3,7 @@
 
 Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
 
-It works primarily by abusing the C preprocessor to a scale hitherto undreamt of.
+It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of.
 
 ### To Do
 - [ ] Look into GitHub actions based testing
