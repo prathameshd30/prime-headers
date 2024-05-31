@@ -8,7 +8,7 @@
  * 
  */
 #include <stdio.h>
-#include "bubble_sort.h"
+#include "../../../include/algorithms/sorting/bubble_sort.h"
 DEFINE_BUBBLE_SORT(int);
 
 #define SIZE 10

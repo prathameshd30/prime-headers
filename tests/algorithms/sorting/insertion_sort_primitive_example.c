@@ -9,7 +9,7 @@
  */
 
 #include <stdio.h>
-#include "insertion_sort.h"
+#include "../../../include/algorithms/sorting/insertion_sort.h"
 
 DEFINE_INSERTION_SORT(int)
 

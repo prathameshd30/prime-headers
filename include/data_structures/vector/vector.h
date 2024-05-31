@@ -20,7 +20,7 @@ struct NAME{\
     TYPE* data;\
     uint64_t size;\
 };\
-NAME* new_##NAME(uint64_t size){\
+NAME* new_##NAME(uint64_t size, TYPE val){\
     NAME* new_obj = malloc(sizeof(NAME));\
     if(!new_obj){\
         return NULL;\
@@ -36,17 +36,25 @@ NAME* new_##NAME(uint64_t size){\
         return NULL;\
     }\
     new_obj->size = size;\
+    for (uint64_t i = 0; i < size; ++i)\
+    {\
+        new_obj->data[i] = val;\
+    }\
     return new_obj;\
 }\
 bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
     if(!obj){\
         return false;\
     }\
+    if(index<0){\
+        return false;\
+    }\
     if(index > obj->size - 1){\
         val = NULL;\
         return false;\
     }\
-    return obj->data[index];\
+    *val = obj->data[index];\
+    return true;\
 }\
 bool set_at_##NAME(NAME* obj, uint64_t index, TYPE val){\
     if(!obj){\
@@ -89,6 +97,12 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val){\
     if(!obj){\
         return false;\
     }\
+    if(!obj->data){\
+        return false;\
+    }\
+    if(obj->size == 0){\
+        return false;\
+    }\
     if(val){\
         *val = obj->data[0];\
     }\
@@ -96,31 +110,39 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val){\
         obj->data[i-1] = obj->data[i];\
     }\
     obj->data = realloc(obj->data, (obj->size-1) * sizeof(TYPE));\
-    if(!obj->data){\
-        return false;\
-    }\
+    --(obj->size);\
     return true;\
 }\
 bool remove_from_end_##NAME(NAME* obj, TYPE* val){\
     if(!obj){\
         return false;\
     }\
-    if(val){\
-        *val = obj->data[obj->size-1];\
-    }\
-    --obj->size;\
-    obj->data = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
     if(!obj->data){\
         return false;\
     }\
+    if(obj->size == 0){\
+        return false;\
+    }\
+    if(val){\
+        *val = obj->data[obj->size-1];\
+    }\
+    obj->data = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
+    --(obj->size);\
     return true;\
 }\
-void print_##NAME(NAME* obj, void (*print_##TYPE)(TYPE)){\
+void print_##NAME(NAME* obj, void (*print_element)(TYPE)){\
     for(uint64_t i = 0; i < obj->size; ++i){\
-        print_##TYPE(obj->data[i]);\
+        print_element(obj->data[i]);\
     }\
 }\
-
-
+bool linear_search_##NAME(NAME* obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), uint64_t *index){\
+    for(uint64_t i = 0; i<obj->size; ++i){\
+        if(comparator(obj->data[i], ref)){\
+            *index = i;\
+            return true;\
+        }\
+    }\
+    return false;\
+}\
 
 #endif

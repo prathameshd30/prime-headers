@@ -8,7 +8,7 @@
  * 
  */
 #include <stdio.h>
-#include "selection_sort.h"
+#include "../../../include/algorithms/sorting/selection_sort.h"
 
 DEFINE_SELECTION_SORT(int)
 
