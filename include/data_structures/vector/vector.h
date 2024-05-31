@@ -93,7 +93,7 @@ bool add_at_beginning_##NAME(NAME* obj, TYPE val){\
     obj->data[0] = val;\
     return true;\
 }\
-bool remove_from_beginning_##NAME(NAME* obj, TYPE* val){\
+bool remove_from_beginning_##NAME(NAME* obj, TYPE* val, bool (*delete_element)(TYPE)){\
     if(!obj){\
         return false;\
     }\
@@ -106,6 +106,9 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val){\
     if(val){\
         *val = obj->data[0];\
     }\
+    else if(delete_element){\
+        delete_element(obj->data[0]);\
+    }\
     for(uint64_t i = 1; i<obj->size; ++i){\
         obj->data[i-1] = obj->data[i];\
     }\
@@ -113,7 +116,7 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val){\
     --(obj->size);\
     return true;\
 }\
-bool remove_from_end_##NAME(NAME* obj, TYPE* val){\
+bool remove_from_end_##NAME(NAME* obj, TYPE* val, bool (*delete_type)(TYPE)){\
     if(!obj){\
         return false;\
     }\
@@ -125,6 +128,9 @@ bool remove_from_end_##NAME(NAME* obj, TYPE* val){\
     }\
     if(val){\
         *val = obj->data[obj->size-1];\
+    }\
+    else if(delete_type){\
+        delete_type(obj->data[obj->size-1]);\
     }\
     obj->data = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
     --(obj->size);\
@@ -144,5 +150,17 @@ bool linear_search_##NAME(NAME* obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), u
     }\
     return false;\
 }\
+bool delete_##NAME(NAME* obj, bool (*delete_type)(TYPE)){\
+    if(!obj){\
+        return false;\
+    }\
+    if(delete_type){\
+        for(uint64_t i = 0; i<obj->size; ++i){\
+            delete_type(obj->data[i]);\
+        }\
+    }\
+    free(obj);\
+    return true;\
+}
 
 #endif

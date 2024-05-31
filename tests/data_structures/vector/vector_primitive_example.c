@@ -97,14 +97,14 @@ int main(void){
     printf("Current intVecExample - ");
     print_intVec(intVecExample,print_int);
     putchar('\n');
-    if(!remove_from_beginning_intVec(intVecExample,&element_at_index)){
+    if(!remove_from_beginning_intVec(intVecExample,&element_at_index, NULL)){
         puts("Cannot remove element");
         return -1;
     }
     printf("Removed element - %d\n",element_at_index);
     print_intVec(intVecExample, print_int);
     putchar('\n');
-    if(!remove_from_end_intVec(intVecExample,&element_at_index)){
+    if(!remove_from_end_intVec(intVecExample,&element_at_index, NULL)){
         puts("Cannot remove element");
         return -1;
     }
@@ -122,14 +122,14 @@ int main(void){
     }
     for (int i = 0; i < 10; ++i)
     {
-        if(!remove_from_beginning_intVec(intVecExample,&element)){
+        if(!remove_from_beginning_intVec(intVecExample,&element, NULL)){
             printf("Vector is empty, cannot remove\n");
         }
         printf("Removed element %d from beginning\n",element);
         print_intVec(intVecExample,print_int);
         putchar('\n');
     }
-    if(!remove_from_beginning_intVec(intVecExample,&element)){
+    if(!remove_from_beginning_intVec(intVecExample,&element, NULL)){
             printf("Vector is empty, cannot remove\n");
         }
     

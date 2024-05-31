@@ -19,6 +19,13 @@ struct Student{
 
 typedef struct Student Student;
 
+bool delete_student(Student* st){
+    free((st)->name);
+    free(st);
+    st = NULL;
+    return true;
+}
+
 Student* new_Student(char* name, uint64_t name_len, double CGPA){
     Student* new_obj = malloc(sizeof(Student));
     if(!new_obj){
@@ -87,7 +94,7 @@ int main(void){
     printf("Student at index %d\n",index);
     print_Student(gotStud);
     putchar('\n');
-    if(!remove_from_end_studVector(newStudVector,&gotStud)){
+    if(!remove_from_end_studVector(newStudVector,&gotStud, delete_student)){
         puts("Could not remove student");
     }
     printf("%d\n",newStudVector->size);
@@ -95,15 +102,15 @@ int main(void){
     print_Student(gotStud);
     putchar('\n');
     print_studVector(newStudVector,print_Student);
-    if(!remove_from_beginning_studVector(newStudVector,NULL)){
+    if(!remove_from_beginning_studVector(newStudVector,NULL, delete_student)){
         puts("Couldn't remove");
     }
     putchar('\n');
     print_studVector(newStudVector,print_Student);
-    if(!remove_from_beginning_studVector(newStudVector,NULL)){
+    if(!remove_from_beginning_studVector(newStudVector,NULL, delete_student)){
         puts("Couldn't remove");
     }
-    if(!remove_from_beginning_studVector(newStudVector,NULL)){
+    if(!remove_from_beginning_studVector(newStudVector,NULL, delete_student)){
         puts("Couldn't remove");
     }
     print_studVector(newStudVector,print_Student);

@@ -9,12 +9,15 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 - [ ] Look into GitHub actions based testing
 - [ ] Write primitive as well as pointer-to-structs examples
 
+### Current Problems
+- Some double frees spotted, need to solve
+
 ### Data structures and algorithms implemented
 
 > The project is a work in progress, with an emphasis on getting things working first. Apologies for the ugly/(currently wrong) code.
 
 - [x] Vector
-- [x] Stack using Vector (Rewrite using own vector)
+- [x] Stack using Vector
 - [ ] Stack using Linked List
 - [ ] Stack using 2 Queues
 - [ ] Queue using Vector
