@@ -22,12 +22,12 @@ void print_card(Card* a){
     printf("%c %c\n",a->suit,a->val);
 }
 
-bool delete_card(Card** c){
-    free(*c);
+bool delete_card(Card* c){
+    free(c);
     return true;
 }
 
-DEFINE_STACK_VECTOR(cardStack, Card*)
+DEFINE_STACK_VECTOR(cardStack, cardVec,Card*)
 
 int main(void){
     cardStack* cs = new_cardStack(NULL);

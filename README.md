@@ -18,11 +18,11 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 
 - [x] Vector
 - [x] Stack using Vector
-- [ ] Stack using Linked List
+- [x] Stack using Linked List
 - [ ] Stack using 2 Queues
-- [ ] Queue using Vector
-- [ ] Queue using Linked List
-- [ ] Deque (Double Ended Queue) using Vector
+- [x] Queue using Vector
+- [x] Queue using Linked List
+- [x] Deque (Double Ended Queue) using Vector (using existing vector interface)
 - [ ] Deque (Double Ended Queue) using Linked List
 - [x] Singly Linked List
 - [ ] Circular Singly Linked List
@@ -36,7 +36,8 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 
 ### Algorithms implemented
 
-- [ ] Linear Search
+- [x] Linear Search in Vector
+- [ ] Linear Search in SLL
 - [ ] Binary Search
 - [x] Bubble Sort
 - [x] Selection Sort

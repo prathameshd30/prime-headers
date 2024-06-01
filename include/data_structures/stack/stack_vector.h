@@ -15,11 +15,11 @@
 #include <stdlib.h>
 #include "../vector/vector.h"
 
-#define DEFINE_STACK_VECTOR(NAME, TYPE)\
-DEFINE_VECTOR(NAME##_vector,TYPE)\
+#define DEFINE_STACK_VECTOR(NAME, VEC_NAME,TYPE)\
+DEFINE_VECTOR(VEC_NAME,TYPE)\
 typedef struct NAME NAME;\
 struct NAME{\
-    NAME##_vector* vec;\
+    VEC_NAME* vec;\
     uint64_t top;\
     bool isEmpty;\
 };\
@@ -28,7 +28,7 @@ NAME* new_##NAME(TYPE val){\
     if(!new_obj){\
         return NULL;\
     }\
-    new_obj->vec = new_##NAME##_vector(0,val);\
+    new_obj->vec = new_##VEC_NAME(0,val);\
     if(!new_obj->vec){\
         free(new_obj);\
         return NULL;\
@@ -50,7 +50,7 @@ bool push_##NAME(NAME* obj, TYPE val){\
     if(!obj || !obj->vec){\
         return false;\
     }\
-    if(!add_at_end_##NAME##_vector(obj->vec,val)){\
+    if(!add_at_end_##VEC_NAME(obj->vec,val)){\
         return false;\
     }\
     else{\
@@ -71,26 +71,26 @@ bool top_##NAME(NAME* obj, TYPE* return_param){\
     *return_param = obj->vec->data[obj->top];\
     return true;\
 }\
-bool pop_##NAME(NAME* obj, bool (*delete_element)(TYPE*)){\
+bool pop_##NAME(NAME* obj, bool (*delete_element)(TYPE)){\
     if(!obj || !obj->vec){\
         return false;\
     }\
     if(isEmpty_##NAME(obj)){\
         return false;\
     }\
-    if(!remove_from_end_##NAME##_vector(obj->vec,NULL, delete_element)){\
+    if(!remove_from_end_##VEC_NAME(obj->vec,NULL, delete_element)){\
         return false;\
     }\
     else{\
         return true;\
     }\
 }\
-bool delete_##NAME(NAME* obj, bool (*delete_element)(TYPE*)){\
+bool delete_##NAME(NAME* obj, bool (*delete_element)(TYPE)){\
     if(!obj || !obj->vec){\
         return false;\
     }\
     if(delete_element){\
-        delete_##NAME##_vector(obj->vec,delete_element);\
+        delete_##VEC_NAME(obj->vec,delete_element);\
     }\
     free(obj);\
     return true;\

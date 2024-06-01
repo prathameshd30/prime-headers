@@ -159,8 +159,23 @@ bool delete_##NAME(NAME* obj, bool (*delete_type)(TYPE)){\
             delete_type(obj->data[i]);\
         }\
     }\
+    free(obj->data);\
     free(obj);\
     return true;\
-}
+}\
+bool clear_##NAME(NAME* obj, bool (*delete_type)(TYPE), TYPE val){\
+    if(!obj){\
+        return false;\
+    }\
+    if(delete_type){\
+        for(uint64_t i = 0; i<obj->size; ++i){\
+            delete_type(obj->data[i]);\
+        }\
+    }\
+    free(obj->data);\
+    obj->data = NULL;\
+    obj->size = 0;\
+    return true;\
+}\
 
 #endif
