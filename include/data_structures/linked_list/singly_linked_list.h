@@ -1,11 +1,11 @@
 /**
  * @file singly_linked_list.h
  * @author Prathamesh Deshpande
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-05-05
- * 
- * 
+ *
+ *
  */
 #ifndef SLL_H
 #define SLL_H
@@ -80,7 +80,7 @@
         head->next = new_obj;                                                                                   \
         return true;                                                                                            \
     }                                                                                                           \
-    void print_SLL_##NAME(const NAME *head, void (*print_node)(TYPE))                                    \
+    void print_SLL_##NAME(const NAME *head, void (*print_node)(TYPE))                                           \
     {                                                                                                           \
         if (!head)                                                                                              \
         {                                                                                                       \
@@ -88,11 +88,11 @@
         }                                                                                                       \
         while (head)                                                                                            \
         {                                                                                                       \
-            print_node(head->val);                                                                       \
+            print_node(head->val);                                                                              \
             head = head->next;                                                                                  \
         }                                                                                                       \
     }                                                                                                           \
-    bool remove_head_SLL_##NAME(NAME **head, bool (*delete_val)(TYPE))                                       \
+    bool remove_head_SLL_##NAME(NAME **head, bool (*delete_val)(TYPE))                                          \
     {                                                                                                           \
         if (!head || !(*head))                                                                                  \
         {                                                                                                       \
@@ -100,14 +100,14 @@
         }                                                                                                       \
         NAME *temp = *head;                                                                                     \
         *head = (*head)->next;                                                                                  \
-        if (delete_val)                                                                                      \
+        if (delete_val)                                                                                         \
         {                                                                                                       \
-            delete_val(temp->val);                                                                           \
+            delete_val(temp->val);                                                                              \
         }                                                                                                       \
         free(temp);                                                                                             \
         return true;                                                                                            \
     }                                                                                                           \
-    bool remove_tail_SLL_##NAME(NAME **head, bool (*delete_val)(TYPE))                                       \
+    bool remove_tail_SLL_##NAME(NAME **head, bool (*delete_val)(TYPE))                                          \
     {                                                                                                           \
         if (!head || !(*head))                                                                                  \
         {                                                                                                       \
@@ -127,14 +127,14 @@
             temp = temp->next;                                                                                  \
         }                                                                                                       \
         tempPrev->next = temp->next;                                                                            \
-        if (delete_val)                                                                                      \
+        if (delete_val)                                                                                         \
         {                                                                                                       \
-            delete_val(temp->val);                                                                           \
+            delete_val(temp->val);                                                                              \
         }                                                                                                       \
         free(temp);                                                                                             \
         return true;                                                                                            \
     }                                                                                                           \
-    bool remove_value_SLL_##NAME(NAME **head, TYPE val, bool (*delete_val)(TYPE))                            \
+    bool remove_value_SLL_##NAME(NAME **head, TYPE val, bool (*delete_val)(TYPE))                               \
     {                                                                                                           \
         if (!head || !(*head))                                                                                  \
         {                                                                                                       \
@@ -154,9 +154,9 @@
             if (temp->val == val)                                                                               \
             {                                                                                                   \
                 tempPrev->next = temp->next;                                                                    \
-                if (delete_val)                                                                              \
+                if (delete_val)                                                                                 \
                 {                                                                                               \
-                    delete_val(temp->val);                                                                   \
+                    delete_val(temp->val);                                                                      \
                 }                                                                                               \
                 free(temp);                                                                                     \
                 return true;                                                                                    \
@@ -166,7 +166,7 @@
         }                                                                                                       \
         return false;                                                                                           \
     }                                                                                                           \
-    bool remove_node_SLL_##NAME(NAME **head, NAME *node, bool delete_val(TYPE))                              \
+    bool remove_node_SLL_##NAME(NAME **head, NAME *node, bool delete_val(TYPE))                                 \
     {                                                                                                           \
         if (!head || !(*head))                                                                                  \
         {                                                                                                       \
@@ -174,7 +174,7 @@
         }                                                                                                       \
         if (*head == node)                                                                                      \
         {                                                                                                       \
-            return remove_head_SLL_##NAME(head, delete_val);                                                 \
+            return remove_head_SLL_##NAME(head, delete_val);                                                    \
         }                                                                                                       \
         NAME *temp = (*head)->next;                                                                             \
         NAME *tempPrev = *head;                                                                                 \
@@ -188,9 +188,9 @@
             return false;                                                                                       \
         }                                                                                                       \
         tempPrev->next = temp->next;                                                                            \
-        if (delete_val)                                                                                      \
+        if (delete_val)                                                                                         \
         {                                                                                                       \
-            delete_val(temp->val);                                                                           \
+            delete_val(temp->val);                                                                              \
         }                                                                                                       \
         free(temp);                                                                                             \
         return true;                                                                                            \
@@ -205,31 +205,48 @@
         {                                                                                                       \
             if (head->val == val)                                                                               \
             {                                                                                                   \
-                result = head;                                                                                 \
+                result = head;                                                                                  \
                 return true;                                                                                    \
             }                                                                                                   \
             head = head->next;                                                                                  \
         }                                                                                                       \
-        result = NULL;                                                                                         \
+        result = NULL;                                                                                          \
         return false;                                                                                           \
     }                                                                                                           \
     bool is_empty_SLL_##NAME(NAME *head)                                                                        \
     {                                                                                                           \
         return (head == NULL);                                                                                  \
     }                                                                                                           \
-    bool delete_SLL_##NAME(NAME **head, bool (*delete_val)(TYPE))                                            \
+    bool delete_SLL_##NAME(NAME **head, bool (*delete_val)(TYPE))                                               \
     {                                                                                                           \
         if (!head || !(*head))                                                                                  \
         {                                                                                                       \
             return false;                                                                                       \
         }                                                                                                       \
-        while (!remove_head_SLL_##NAME(head, delete_val))                                                    \
+        while (!remove_head_SLL_##NAME(head, delete_val))                                                       \
             ;                                                                                                   \
         if (*head == NULL)                                                                                      \
         {                                                                                                       \
             return true;                                                                                        \
         }                                                                                                       \
         return false; /*head double pointer null, to be honest I don;t even know what it means*/                \
+    }                                                                                                           \
+    bool linear_search_##NAME(NAME *head, bool (*comparator)(TYPE, TYPE), TYPE ref, NAME *foundNode)            \
+    {                                                                                                           \
+        while (head)                                                                                            \
+        {                                                                                                       \
+            if (comparator(ref, head->val))                                                                     \
+            {                                                                                                   \
+                if (foundNode)                                                                                  \
+                {                                                                                               \
+                    *foundNode = head;                                                                          \
+                }                                                                                               \
+                return true;                                                                                    \
+            }                                                                                                   \
+            head = head->next;                                                                                  \
+        }                                                                                                       \
+        *foundNode = NULL;                                                                                      \
+        return false;                                                                                           \
     }
 
 #endif

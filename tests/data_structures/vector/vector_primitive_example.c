@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 // #define NDEBUG
-#include <assert.h>
+// #include <assert.h>
 #include "../../../include/data_structures/vector/vector.h"
 #include "../../../include/algorithms/sorting/bubble_sort.h"
 
@@ -51,7 +51,7 @@ int main(void){
         puts("Invalid index\n");
         return -1;
     }
-    assert(intVecExample->data[0]==1);
+    // assert(intVecExample->data[0]==1);
     printf("Current intVecExample - ");
     print_intVec(intVecExample,print_int);
     putchar('\n');

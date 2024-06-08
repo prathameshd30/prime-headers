@@ -19,14 +19,17 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 - [x] Vector
 - [x] Stack using Vector
 - [x] Stack using Linked List
-- [ ] Stack using 2 Queues
 - [x] Queue using Vector
 - [x] Queue using Linked List
 - [x] Deque (Double Ended Queue) using Vector (using existing vector interface)
-- [ ] Deque (Double Ended Queue) using Linked List
+- [x] Deque (Double Ended Queue) using Doubly Linked List
 - [x] Singly Linked List
+- [-] Set
+- [-] Unordered Set
+- [-] Map
+- [-] Unordered Map (Hashmap)
 - [ ] Circular Singly Linked List
-- [ ] Doubly Linked List
+- [x] Doubly Linked List
 - [ ] Circular Doubly Linked List
 - [ ] Generalized Linked List
 - [ ] Binary Tree
