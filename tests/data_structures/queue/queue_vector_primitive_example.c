@@ -1,12 +1,3 @@
-/**
- * @file queue_vector_primitive_example.c
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-06-01
- * 
- * 
- */
 #include <stdio.h>
 #include "../../../include/data_structures/queue/queue_vector.h"
 

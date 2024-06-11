@@ -1,12 +1,3 @@
-/**
- * @file doubly_linked_list.h
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-06-01
- * 
- * 
- */
 #ifndef DLL_H
 #define DLL_H
 

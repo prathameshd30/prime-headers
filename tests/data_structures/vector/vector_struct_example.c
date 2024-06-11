@@ -1,13 +1,3 @@
-/**
- * @file vector_struct_example.c
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-30
- * 
- * @copyright Copyright (c) 2024
- * 
- */
 #include <stdio.h>
 #include <string.h>
 #include "../../../include/data_structures/vector/vector.h"

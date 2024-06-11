@@ -1,13 +1,3 @@
-/**
- * @file stack_SLL_primitive_example.c
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-31
- * 
- * 
- */
-
 #include <stdio.h>
 #include "../../../include/data_structures/stack/stack_SLL.h"
 

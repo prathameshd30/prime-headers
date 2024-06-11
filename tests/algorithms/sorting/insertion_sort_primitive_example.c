@@ -1,13 +1,3 @@
-/**
- * @file insertion_sort_primitive_example.c
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-05
- * 
- * 
- */
-
 #include <stdio.h>
 #include "../../../include/algorithms/sorting/insertion_sort.h"
 

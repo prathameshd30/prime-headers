@@ -1,12 +1,3 @@
-/**
- * @file insertion_sort.h
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-05
- * 
- * 
- */
 #ifndef INSERTION_SORT_H
 #define INSERTION_SORT_H
 

@@ -1,13 +1,3 @@
-/**
- * @file queue_SLL.h
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-06-01
- * 
- * 
- */
-
 #include <stdio.h>
 #include "../linked_list/singly_linked_list.h"
 

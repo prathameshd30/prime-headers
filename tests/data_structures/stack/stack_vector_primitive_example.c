@@ -1,14 +1,4 @@
-/**
- * @file stack_primitive_example.c
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-31
- * 
- * 
- */
 #include <stdio.h>
-
 #include "../../../include/data_structures/stack/stack_vector.h"
 
 DEFINE_STACK_VECTOR(charStack,charVec,char)

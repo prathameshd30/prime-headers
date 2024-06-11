@@ -1,13 +1,3 @@
-/**
- * @file queue_vector.h
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-06-01
- * 
- * 
- */
-
 #ifndef QUEUE_VECTOR_H
 #define QUEUE_VECTOR_H
 #include "../vector/vector.h"

@@ -1,12 +1,3 @@
-/**
- * @file singly_linked_list.h
- * @author Prathamesh Deshpande
- * @brief
- * @version 0.1
- * @date 2024-05-05
- *
- *
- */
 #ifndef SLL_H
 #define SLL_H
 
@@ -231,7 +222,7 @@
         }                                                                                                       \
         return false; /*head double pointer null, to be honest I don;t even know what it means*/                \
     }                                                                                                           \
-    bool linear_search_##NAME(NAME *head, bool (*comparator)(TYPE, TYPE), TYPE ref, NAME *foundNode)            \
+    bool linear_search_##NAME(NAME *head, bool (*comparator)(TYPE, TYPE), TYPE ref, NAME **foundNode)           \
     {                                                                                                           \
         while (head)                                                                                            \
         {                                                                                                       \

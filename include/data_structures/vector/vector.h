@@ -1,12 +1,4 @@
-/**
- * @file vector.h
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-04
- * 
- * This implementation of vector does not preallocate memory to save time, as I intend for this to be a simple-to-understand implementation rather than the 'best' one
- */
+/* This implementation of vector does not preallocate memory to save time, as I intend for this to be a simple-to-understand implementation rather than the 'best' one*/
 #ifndef VECTOR_H
 #define VECTOR_H
 

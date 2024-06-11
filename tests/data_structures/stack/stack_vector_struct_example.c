@@ -1,14 +1,3 @@
-/**
- * @file stack_struct_example.c
- * @author Prathamesh Deshpande
- * @brief 
- * @version 0.1
- * @date 2024-05-31
- * 
- * 
- */
-
-
 #include <stdio.h>
 #include "../../../include/data_structures/stack/stack_vector.h"
 
