@@ -12,7 +12,7 @@ struct NAME{\
     TYPE* data;\
     uint64_t size;\
 };\
-NAME* new_##NAME(uint64_t size, TYPE val){\
+NAME* new_##NAME(uint64_t size){\
     NAME* new_obj = malloc(sizeof(NAME));\
     if(!new_obj){\
         return NULL;\
@@ -28,10 +28,6 @@ NAME* new_##NAME(uint64_t size, TYPE val){\
         return NULL;\
     }\
     new_obj->size = size;\
-    for (uint64_t i = 0; i < size; ++i)\
-    {\
-        new_obj->data[i] = val;\
-    }\
     return new_obj;\
 }\
 bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\

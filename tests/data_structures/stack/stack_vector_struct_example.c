@@ -19,7 +19,7 @@ bool delete_card(Card* c){
 DEFINE_STACK_VECTOR(cardStack, cardVec,Card*)
 
 int main(void){
-    cardStack* cs = new_cardStack(NULL);
+    cardStack* cs = new_cardStack();
     Card* newCard = malloc(sizeof(Card));
     newCard->suit = 'S'; //Spades
     newCard->val = 'A'; //Ace

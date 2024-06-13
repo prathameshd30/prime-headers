@@ -29,7 +29,7 @@ bool intIsEqual(int a, int b){
 
 int main(void){
     const uint64_t size = 10;
-    intVec* intVecExample = new_intVec(10,0);
+    intVec* intVecExample = new_intVec(10);
     if(!intVecExample){
         puts("Failed to make vector\n");
         return -1;

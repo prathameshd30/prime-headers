@@ -9,7 +9,7 @@ void print_char(char c){
 
 int main(void){
     char s[] = "()(())";
-    charStack* cs = new_charStack(0);
+    charStack* cs = new_charStack();
     for(int i = 0; i<sizeof(s)/sizeof(char); ++i){
         print_charStack(cs,print_char);
         putchar('\n');

@@ -14,12 +14,12 @@ struct NAME{\
     uint64_t top;\
     bool isEmpty;\
 };\
-NAME* new_##NAME(TYPE val){\
+NAME* new_##NAME(void){\
     NAME* new_obj = malloc(sizeof(NAME));\
     if(!new_obj){\
         return NULL;\
     }\
-    new_obj->vec = new_##VEC_NAME(0,val);\
+    new_obj->vec = new_##VEC_NAME(0);\
     if(!new_obj->vec){\
         free(new_obj);\
         return NULL;\
@@ -72,9 +72,13 @@ bool pop_##NAME(NAME* obj, bool (*delete_element)(TYPE)){\
     if(!remove_from_end_##VEC_NAME(obj->vec,NULL, delete_element)){\
         return false;\
     }\
-    else{\
-        return true;\
+    if(obj->top == 0){\
+        obj->isEmpty = true;\
     }\
+    else{\
+        obj->top = obj->vec->size - 1;\
+    }\
+    return true;\
 }\
 bool delete_##NAME(NAME* obj, bool (*delete_element)(TYPE)){\
     if(!obj || !obj->vec){\
