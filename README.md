@@ -32,7 +32,7 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 - [x] Doubly Linked List
 - [ ] Circular Doubly Linked List
 - [ ] Generalized Linked List
-- [ ] Binary Tree
+- [x] Binary Tree (Generation using 2 traversals left)
 - [ ] Binary Search Tree
 - [ ] AVL Tree
 - [ ] RB Tree
