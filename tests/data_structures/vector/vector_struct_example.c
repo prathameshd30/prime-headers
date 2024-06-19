@@ -46,7 +46,7 @@ int main(void){
     if(!newStud){
         puts("New student cannot be created");
     }
-    studVector* newStudVector = new_studVector(1,NULL);
+    studVector* newStudVector = new_studVector(1);
     if(!new_studVector){
         puts("Vector cannot be initialised");
         return -1;

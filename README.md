@@ -3,14 +3,12 @@
 
 Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
 
-It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of.
+It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
 ### To Do
 - [ ] Look into GitHub actions based testing
 - [ ] Write primitive as well as pointer-to-structs examples
-
-### Current Problems
-- Some double frees spotted, need to solve
+- [ ] Examples should try to break the framework as much as possible
 
 ### Data structures and algorithms implemented
 
@@ -32,15 +30,16 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 - [x] Doubly Linked List
 - [ ] Circular Doubly Linked List
 - [ ] Generalized Linked List
+- [ ] Heap
 - [x] Binary Tree (Generation using 2 traversals left)
-- [ ] Binary Search Tree
+- [x] Binary Search Tree (Done recursively, TODO delete for all 3 cases)
 - [ ] AVL Tree
 - [ ] RB Tree
 
 ### Algorithms implemented
 
 - [x] Linear Search in Vector
-- [ ] Linear Search in SLL
+- [x] Linear Search in SLL
 - [ ] Binary Search
 - [x] Bubble Sort
 - [x] Selection Sort
@@ -56,11 +55,10 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 
 ### Cons
 
-1. This method is optimised for ease of use (probably for beginners because it primarily works with pointers to structs), however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
+1. This method is optimised for ease of use (probably for beginners/learners because it primarily works with pointers to structs), however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
 2. **Poor support** (slow) for Intellisense and similar code intelligence tools.
 
 > This project is a side-effect of trying to develop a command-line tool for easier use of generic data structures, which splits the interface and the function definitions, leading to better compilation times.
-
 
 ## Some helpful projects which helped me develop this
 

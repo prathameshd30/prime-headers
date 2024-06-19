@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define DEFINE_INSERTION_SORT(TYPE)\
-bool insertion_sort_##TYPE(TYPE* data, int64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*, TYPE*)){\
+#define DEFINE_INSERTION_SORT(NAME,TYPE)\
+bool insertion_sort_##NAME(TYPE* data, int64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*, TYPE*)){\
     if(!data || size == 0 || !comparator || !swap){\
         return false;\
     }\

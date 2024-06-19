@@ -3,8 +3,8 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#define DEFINE_BUBBLE_SORT(TYPE)\
-bool bubble_sort_##TYPE(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*,TYPE*)){\
+#define DEFINE_BUBBLE_SORT_ARR(NAME,TYPE)\
+bool bubble_sort_##NAME(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*,TYPE*)){\
     if(!data || size == 0 || !comparator || !swap){\
         return false;\
     }\
@@ -18,7 +18,7 @@ bool bubble_sort_##TYPE(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE
     }\
     return true;\
 }\
-bool optimised_bubble_sort_##TYPE(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*,TYPE*)){\
+bool optimised_bubble_sort_##NAME(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*,TYPE*)){\
     if(!data || size == 0 || !comparator || !swap){\
         return false;\
     }\

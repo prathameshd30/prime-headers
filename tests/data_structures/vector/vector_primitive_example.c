@@ -6,7 +6,7 @@
 #include "../../../include/algorithms/sorting/bubble_sort.h"
 
 DEFINE_VECTOR(intVec,int)
-DEFINE_BUBBLE_SORT(int)
+DEFINE_BUBBLE_SORT_ARR(intArr,int)
 
 void print_int(int a){
     printf("%d ",a);
@@ -102,7 +102,7 @@ int main(void){
     print_intVec(intVecExample,print_int);
     putchar('\n');
     printf("Using algorithms from the library\nSorted in descending order (bubble sort) - ");
-    bubble_sort_int(intVecExample->data,intVecExample->size,less_than,swap);
+    bubble_sort_intArr(intVecExample->data,intVecExample->size,less_than,swap);
     print_intVec(intVecExample,print_int);
     uint64_t found_index;
     int element = 5;

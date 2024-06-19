@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define DEFINE_SELECTION_SORT(TYPE)\
-bool selection_sort_##TYPE(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*, TYPE*)){\
+#define DEFINE_SELECTION_SORT(NAME, TYPE)\
+bool selection_sort_##NAME(TYPE* data, uint64_t size, bool (*comparator)(TYPE, TYPE), bool (*swap)(TYPE*, TYPE*)){\
     if(!data || size == 0 || !comparator || !swap){\
         return false;\
     }\

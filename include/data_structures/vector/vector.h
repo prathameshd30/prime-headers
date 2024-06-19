@@ -164,6 +164,6 @@ bool clear_##NAME(NAME* obj, bool (*delete_type)(TYPE), TYPE val){\
     obj->data = NULL;\
     obj->size = 0;\
     return true;\
-}\
+}
 
 #endif
