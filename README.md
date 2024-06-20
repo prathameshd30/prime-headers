@@ -5,10 +5,20 @@ Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way 
 
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
+Initially, I was going to write it in the OOP C Pattern (pointers to functions inside structs), however as most people do not use the pattern, it would have hindered the usability of the framework. (Although it could be made in the future).
+
 ### To Do
 - [ ] Look into GitHub actions based testing
+- [ ] How can I integrate CMake, CTest, GitHub actions and Valgrind?
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] Examples should try to break the framework as much as possible
+
+### Checklist
+- Each function, with pointer params, should check for NULL for each pointer,
+- Have a thorough deletion mechanism for each data structure.
+- Set unused pointers to return wherever applicable.
+- Library functions in snake_case_##ANY_SUFFIX
+- All reallocs need to be first assigned to temp variables
 
 ### Data structures and algorithms implemented
 
@@ -56,9 +66,9 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 ### Cons
 
 1. This method is optimised for ease of use (probably for beginners/learners because it primarily works with pointers to structs), however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
-2. **Poor support** (slow) for Intellisense and similar code intelligence tools.
+2. **Poor support** (slow) for Intellisense and similar code intelligence and autocompletion tools.
 
-> This project is a side-effect of trying to develop a command-line tool for easier use of generic data structures, which splits the interface and the function definitions, leading to better compilation times.
+> This project is a side-effect of trying to develop a command-line tool for easier use of generic data structures for C, which splits the interface and the function definitions, leading to better compilation times.
 
 ## Some helpful projects which helped me develop this
 

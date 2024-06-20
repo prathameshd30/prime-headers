@@ -30,11 +30,17 @@ NAME* new_##NAME(uint64_t size){\
     new_obj->size = size;\
     return new_obj;\
 }\
-bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
+bool is_empty_##NAME(NAME* obj){\
     if(!obj){\
         return false;\
     }\
-    if(index<0){\
+    if(obj->size == 0 || obj->data == NULL){\
+        return true;\
+    }\
+    return false;\
+}\
+bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
+    if(!obj || !val){\
         return false;\
     }\
     if(index > obj->size - 1){\
@@ -54,14 +60,24 @@ bool set_at_##NAME(NAME* obj, uint64_t index, TYPE val){\
     obj->data[index] = val;\
     return true;\
 }\
-bool add_at_end_##NAME(NAME* obj, TYPE val){\
+bool set_whole_##NAME(NAME* obj, TYPE val){\
     if(!obj){\
         return false;\
     }\
-    obj->data = realloc(obj->data, (obj->size +1)* sizeof(TYPE));\
-    if(!obj->data){\
+    for(uint64_t index = 0; index < obj->size; ++index){\
+        obj->data[index] = val;\
+    }\
+    return true;\
+}\
+bool add_at_end_##NAME(NAME* obj, TYPE val){\
+    if(!obj || !obj->data){\
         return false;\
     }\
+    TYPE* temp = realloc(obj->data, (obj->size + 1)* sizeof(TYPE));\
+    if(!temp){\
+        return false;\
+    }\
+    obj->data = temp;\
     ++obj->size;\
     obj->data[obj->size - 1] = val;\
     return true;\
@@ -70,10 +86,11 @@ bool add_at_beginning_##NAME(NAME* obj, TYPE val){\
     if(!obj){\
         return false;\
     }\
-    obj->data = realloc(obj->data, (obj->size + 1) * sizeof(TYPE));\
-    if(!obj->data){\
+    TYPE* temp = realloc(obj->data, (obj->size + 1) * sizeof(TYPE));\
+    if(!temp){\
         return false;\
     }\
+    obj->data = temp;\
     ++obj->size;\
     for(uint64_t i = obj->size - 1; i>0; --i){\
         obj->data[i] = obj->data[i-1];\
@@ -82,13 +99,7 @@ bool add_at_beginning_##NAME(NAME* obj, TYPE val){\
     return true;\
 }\
 bool remove_from_beginning_##NAME(NAME* obj, TYPE* val, bool (*delete_element)(TYPE)){\
-    if(!obj){\
-        return false;\
-    }\
-    if(!obj->data){\
-        return false;\
-    }\
-    if(obj->size == 0){\
+    if(!obj || !obj->data || obj->size == 0){\
         return false;\
     }\
     if(val){\
@@ -100,7 +111,11 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val, bool (*delete_element)(T
     for(uint64_t i = 1; i<obj->size; ++i){\
         obj->data[i-1] = obj->data[i];\
     }\
-    obj->data = realloc(obj->data, (obj->size-1) * sizeof(TYPE));\
+    TYPE* temp = realloc(obj->data, (obj->size-1) * sizeof(TYPE));\
+    if(!temp){\
+        return false;\
+    }\
+    obj->data = temp;\
     --(obj->size);\
     return true;\
 }\
@@ -120,11 +135,18 @@ bool remove_from_end_##NAME(NAME* obj, TYPE* val, bool (*delete_type)(TYPE)){\
     else if(delete_type){\
         delete_type(obj->data[obj->size-1]);\
     }\
-    obj->data = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
+    TYPE* temp = realloc(obj->data, (obj->size-1)*sizeof(TYPE));\
+    if(!temp){\
+        return false;\
+    }\
+    obj->data = temp;\
     --(obj->size);\
     return true;\
 }\
 void print_##NAME(NAME* obj, void (*print_element)(TYPE)){\
+    if(!obj || !print_element || !(obj->data)){\
+        return;\
+    }\
     for(uint64_t i = 0; i < obj->size; ++i){\
         print_element(obj->data[i]);\
     }\
