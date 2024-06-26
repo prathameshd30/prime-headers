@@ -82,7 +82,7 @@ jobs:
     - name: Check Whether memcheck failed
       if: matrix.os == 'ubuntu-latest'
       run: |
-       regex_pattern="/home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/MemoryChecker.*"
+       regex_pattern="MemoryChecker.*"
        if find . -type f -regex "$regex_pattern" -print -quit | grep -q .; then
        exit 1
        fi
