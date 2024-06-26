@@ -58,3 +58,15 @@ jobs:
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       run: ctest --build-config ${{ matrix.build_type }}
+
+    - name: CTest Memcheck (Valgrind)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+       ctest -T memcheck -C Debug --test-dir build
+       
+    - name: CTest Memcheck (Valgrind) Upload Results
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v4
+      with:
+        name: memcheck-results
+        path: Testing/Temporary/MemoryChecker.*

@@ -39,6 +39,7 @@ bool optimised_bubble_sort_##NAME(TYPE* data, uint64_t size, bool (*comparator)(
             return true;\
         }\
     }\
+    return true;\
 }
 
 

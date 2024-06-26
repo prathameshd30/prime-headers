@@ -13,5 +13,6 @@ include_directories(include/data_structures/vector)
 
 
 enable_testing()
+include(CTest)
 
 add_subdirectory(tests/data_structures/vector)
