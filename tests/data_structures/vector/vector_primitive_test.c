@@ -49,7 +49,6 @@ int main(void){
         puts("Non-empty vector triggers isEmpty");
         return -1;
     }
-
     const int element = 10;
     set_whole_intVec(iv,element);
     print_intVec(iv,print_int);
@@ -84,6 +83,25 @@ int main(void){
         puts("set_at out of bounds being accepted");
     }
 
+    if(!set_whole_intVec(iv,0)){
+        puts("set_at_whole failed with non-empty vector");
+        return -1;
+    }
+    print_intVec(iv,print_int);
+    putchar('\n');
 
+    if(!add_at_end_intVec(iv,1)){
+        puts("add_at_end failed");
+        return -1;
+    }
+
+    if(!add_at_beginning_intVec(iv,-1)){
+        puts("add_at_beginning failed");
+        return -1;
+    }
+    
+    // More tests required!
+
+    delete_intVec(iv,NULL);
     return 0;
 }

@@ -12,6 +12,7 @@ Initially, I was going to write it in the OOP C Pattern (pointers to functions i
 - [ ] How can I integrate CMake, CTest, GitHub actions and Valgrind?
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] Examples should try to break the framework as much as possible
+- [ ] Valgrind testing?
 
 ### Checklist
 - Each function, with pointer params, should check for NULL for each pointer,

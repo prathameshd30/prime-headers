@@ -19,7 +19,7 @@ NAME* new_##NAME(uint64_t size){\
     }\
     if(size == 0){\
         new_obj->data = NULL;\
-        new_obj->size = 0;\
+        new_obj->size = 0   ;\
         return new_obj;\
     }\
     new_obj->data = calloc(size,sizeof(TYPE));\
@@ -28,6 +28,22 @@ NAME* new_##NAME(uint64_t size){\
         return NULL;\
     }\
     new_obj->size = size;\
+    return new_obj;\
+}\
+NAME* construct_from_arr_##NAME(TYPE* arr, uint64_t size){\
+    if(!arr){\
+        return NULL;\
+    }\
+    NAME* new_obj = new_##NAME(size);\
+    if(!new_obj){\
+        return NULL;\
+    }\
+    if(size == 0){\
+        return new_obj;\
+    }\
+    for(uint64_t index = 0; index < new_obj->size; ++index){\
+        new_obj->data[index] = arr[index];\
+    }\
     return new_obj;\
 }\
 bool is_empty_##NAME(NAME* obj){\
@@ -61,7 +77,7 @@ bool set_at_##NAME(NAME* obj, uint64_t index, TYPE val){\
     return true;\
 }\
 bool set_whole_##NAME(NAME* obj, TYPE val){\
-    if(!obj){\
+    if(!obj || !(obj->data) || (obj->size == 0)){\
         return false;\
     }\
     for(uint64_t index = 0; index < obj->size; ++index){\
@@ -70,7 +86,7 @@ bool set_whole_##NAME(NAME* obj, TYPE val){\
     return true;\
 }\
 bool add_at_end_##NAME(NAME* obj, TYPE val){\
-    if(!obj || !obj->data){\
+    if(!obj){\
         return false;\
     }\
     TYPE* temp = realloc(obj->data, (obj->size + 1)* sizeof(TYPE));\
@@ -120,13 +136,7 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val, bool (*delete_element)(T
     return true;\
 }\
 bool remove_from_end_##NAME(NAME* obj, TYPE* val, bool (*delete_type)(TYPE)){\
-    if(!obj){\
-        return false;\
-    }\
-    if(!obj->data){\
-        return false;\
-    }\
-    if(obj->size == 0){\
+    if(!obj || !obj->data || obj->size == 0){\
         return false;\
     }\
     if(val){\
@@ -152,6 +162,9 @@ void print_##NAME(NAME* obj, void (*print_element)(TYPE)){\
     }\
 }\
 bool linear_search_##NAME(NAME* obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), uint64_t *index){\
+    if(!obj || !obj->data || obj->size == 0 || !(comparator)){\
+        return false;\
+    }\
     for(uint64_t i = 0; i<obj->size; ++i){\
         if(comparator(obj->data[i], ref)){\
             *index = i;\
@@ -164,12 +177,14 @@ bool delete_##NAME(NAME* obj, bool (*delete_type)(TYPE)){\
     if(!obj){\
         return false;\
     }\
-    if(delete_type){\
-        for(uint64_t i = 0; i<obj->size; ++i){\
-            delete_type(obj->data[i]);\
+    if(obj->data){\
+        if(delete_type){\
+            for(uint64_t i = 0; i<obj->size; ++i){\
+                delete_type(obj->data[i]);\
+            }\
         }\
+        free(obj->data);\
     }\
-    free(obj->data);\
     free(obj);\
     return true;\
 }\
@@ -177,12 +192,12 @@ bool clear_##NAME(NAME* obj, bool (*delete_type)(TYPE), TYPE val){\
     if(!obj){\
         return false;\
     }\
-    if(delete_type){\
+    if(obj->data && delete_type){\
         for(uint64_t i = 0; i<obj->size; ++i){\
             delete_type(obj->data[i]);\
         }\
+        free(obj->data);\
     }\
-    free(obj->data);\
     obj->data = NULL;\
     obj->size = 0;\
     return true;\
