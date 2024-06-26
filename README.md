@@ -6,16 +6,18 @@
 
 Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
 
+It aims to be completely tested, across platforms, and memory profiled.
+
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
 Initially, I was going to write it in the OOP C Pattern (pointers to functions inside structs), however as most people do not use the pattern, it would have hindered the usability of the framework. (Although it could be made in the future).
 
 ### To Do
-- [ ] Look into GitHub actions based testing
-- [ ] How can I integrate CMake, CTest, GitHub actions and Valgrind?
+- [x] Look into GitHub actions based testing
+- [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] Examples should try to break the framework as much as possible
-- [ ] Valgrind testing?
+- [x] Valgrind testing?
 
 ### Checklist
 - Each function, with pointer params, should check for NULL for each pointer,
