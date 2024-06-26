@@ -76,4 +76,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: memcheck-results
-        path: ./Testing/Temporary/MemoryChecker.*
+        path: /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/MemoryChecker.*
+        
