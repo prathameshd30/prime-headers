@@ -1,6 +1,9 @@
 # Prime Headers
 ## Header-only, type-safe, generic data structures and algorithms for C.
 
+### Testing
+[![CMake + CTest on multiple platforms](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg?event=workflow_dispatch)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
+
 Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
 
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
