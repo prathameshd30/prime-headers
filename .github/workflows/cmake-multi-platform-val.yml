@@ -66,15 +66,24 @@ jobs:
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       run: ctest --build-config ${{ matrix.build_type }}
 
-    - name: CTest Memcheck (Valgrind)
+    - name: CTest-Memcheck-Valgrind
       if: matrix.os == 'ubuntu-latest'
       run: |
-       ctest -T memcheck -C Debug --test-dir build
-       
+       ctest -T memcheck -C Debug --test-dir build 
+       ctest_output_code=$?
+    
     - name: CTest Memcheck (Valgrind) Upload Results
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v4
       with:
-        name: memcheck-results
+        name: memcheck-results-${{matrix.c_compiler}}
         path: /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/MemoryChecker.*
+
+    - name: Check Whether memcheck failed
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+       regex_pattern="/home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/MemoryChecker.*"
+       if find . -type f -regex "$regex_pattern" -print -quit | grep -q .; then
+       exit 1
+       fi
         
