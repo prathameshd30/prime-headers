@@ -46,7 +46,10 @@ jobs:
 
     - name: Install Valgrind if not present
       if: matrix.os == 'ubuntu-latest'
-      run: sudo apt-get -y install valgrind
+      run: |
+       sudo apt-get update 
+       sudo apt-get -y install valgrind
+
 
     - name: Configure CMake
       run: >
