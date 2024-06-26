@@ -44,6 +44,10 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+    - name: Install Valgrind if not present
+      if: matrix.os == 'ubuntu-latest'
+      run: sudo apt-get -y install valgrind
+
     - name: Configure CMake
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
