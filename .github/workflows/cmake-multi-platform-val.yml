@@ -72,11 +72,10 @@ jobs:
        ctest -T memcheck -C Debug --test-dir build 
        ctest_output_code=$?
 
-    - name: CTest echo last command
+    - name: CTest Check if Valgrind Failed
       if: matrix.os == 'ubuntu-latest'
-      run: |
-       echo $ctest_output_code
-
+      run: 
+    
     - name: CTest Memcheck (Valgrind) Upload Results
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v4
@@ -84,6 +83,20 @@ jobs:
         name: memcheck-results-${{matrix.c_compiler}}
         path: /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/MemoryChecker.*
         if-no-files-found: ignore
+
+    - name: Check if valgrind failed 
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+       pattern=".*MemoryChecker.*.log"
+       files=$(find /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/ -regex "$pattern")
+       if [ -n "$files" ]; then
+       echo "Valgrind Failed, MemoryChecker files exist and are uploaded to Artifacts"
+       exit 1
+       else
+       echo "Valgrind Passed"
+       fi
+
+    
 
 
     
