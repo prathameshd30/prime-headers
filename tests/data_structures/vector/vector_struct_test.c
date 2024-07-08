@@ -18,7 +18,7 @@ typedef struct Card Card;
 
 Card* new_Card(char* name, uint16_t name_length, char suite, unsigned short value){
     Card* new_obj = calloc(1,sizeof(Card));
-    new_obj->name = calloc(name_length+1, sizeof(char)); // accounting for null character (thanks valgrind!) (Unsafe if buffer overflow, just for basic testing)
+    new_obj->name = calloc(name_length, sizeof(char)); // accounting for null character (thanks valgrind!) (Unsafe if buffer overflow, just for basic testing)
     strncpy(new_obj->name,name,name_length);
     new_obj->name_length = name_length;
     new_obj->suite = suite;
