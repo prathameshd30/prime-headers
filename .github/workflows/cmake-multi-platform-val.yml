@@ -76,9 +76,9 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
        if [ -z "$( ls -A '/home/runner/work/prime-headers/prime-headers/build/Testing/Temporary' )" ]; then
-       echo "Valgrind Test Passed"
-       else
        exit 1
+       else
+       echo "Valgrind Test Passed"
        fi
 
     - name: CTest Memcheck (Valgrind) Upload Results
