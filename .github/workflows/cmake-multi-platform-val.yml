@@ -83,7 +83,7 @@ jobs:
     - name: Check if valgrind failed 
       if: matrix.os == 'ubuntu-latest'
       run: |
-       pattern=".*MemoryChecker.*.log"
+       pattern=".*LastTestsFailed.*.log"
        files=$(find /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/ -regex "$pattern")
        if [ -n "$files" ]; then
        echo "Valgrind Failed, MemoryChecker files exist and are uploaded to Artifacts"
