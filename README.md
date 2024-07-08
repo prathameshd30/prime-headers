@@ -3,6 +3,7 @@
 
 ### Testing
 [![CMake + CTest on multiple platforms](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
+[![CodeQL](https://github.com/prathameshd30/prime-headers/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/github-code-scanning/codeql)
 
 Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
 
@@ -38,10 +39,10 @@ Initially, I was going to write it in the OOP C Pattern (pointers to functions i
 - [x] Deque (Double Ended Queue) using Vector (using existing vector interface)
 - [x] Deque (Double Ended Queue) using Doubly Linked List
 - [x] Singly Linked List
-- [-] Set
-- [-] Unordered Set
-- [-] Map
-- [-] Unordered Map (Hashmap)
+- [ ] Set
+- [ ] Unordered Set
+- [ ] Map
+- [ ] Unordered Map (Hashmap)
 - [ ] Circular Singly Linked List
 - [x] Doubly Linked List
 - [ ] Circular Doubly Linked List
