@@ -71,10 +71,6 @@ jobs:
       run: |
        ctest -T memcheck -C Debug --test-dir build 
        ctest_output_code=$?
-
-    - name: CTest Check if Valgrind Failed
-      if: matrix.os == 'ubuntu-latest'
-      run: 
     
     - name: CTest Memcheck (Valgrind) Upload Results
       if: matrix.os == 'ubuntu-latest'
