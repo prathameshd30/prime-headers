@@ -3,6 +3,7 @@
 *.out
 *.exe
 .vscode/
+.vs/
 
 list.txt
 
