@@ -12,7 +12,7 @@ struct NAME{\
     TYPE* data;\
     uint64_t size;\
 };\
-NAME* new_##NAME(uint64_t size){\
+NAME* new_##NAME(uint64_t size){ /*Size is set only after allocation of vector->data memory, need someone to clarify if this is advised*/ \
     NAME* new_obj = malloc(sizeof(NAME));\
     if(!new_obj){\
         return NULL;\
