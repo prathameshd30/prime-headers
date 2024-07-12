@@ -61,6 +61,6 @@ int main(void){
     }
     // More tests needed
     print_CardVector(cv,print_Card);
-    delete_CardVector(cv,delete_Card);
+    delete_CardVector(&cv,delete_Card);
     return 0;
 }

@@ -173,6 +173,6 @@ int main(void){
     
     // More tests required!
 
-    delete_intVec(iv,NULL);
+    delete_intVec(&iv,NULL);
     return 0;
 }
