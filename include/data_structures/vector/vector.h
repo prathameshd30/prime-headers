@@ -19,7 +19,7 @@ NAME* new_##NAME(uint64_t size){ /*Size is set only after allocation of vector->
     }\
     if(size == 0){\
         new_obj->data = NULL;\
-        new_obj->size = 0   ;\
+        new_obj->size = 0;\
         return new_obj;\
     }\
     new_obj->data = calloc(size,sizeof(TYPE));\

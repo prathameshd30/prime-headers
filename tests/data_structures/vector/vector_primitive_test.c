@@ -66,21 +66,25 @@ int main(void){
         return -1;
     }
     
-    // Test at uint64_t max
-    iv = new_intVec(UINT64_MAX);
-    if(iv->size!=UINT64_MAX){
-        puts("Incorrect vector size set at UINT64_MAX");
-        return -1;
-    }
-    if(iv->data==NULL){
-        puts("Vector data is NULL at size UINT64_MAX");
-        return -1;
-    }
-    delete_intVec(&iv,NULL);
-    if(iv!=NULL){
-        puts("Vector is not null after being freed at UINT64_MAX");
-        return -1;
-    }
+    // Test at uint64_t max (IMPRACTICAL, Roughly 73700 Petabytes of RAM needed)
+    // iv = new_intVec(UINT64_MAX);
+    // if(!iv){
+    //     puts("Vector not created cleanly at size UINT64_MAX");
+    //     return -1;
+    // }
+    // if(iv->size!=UINT64_MAX){
+    //     puts("Incorrect vector size set at UINT64_MAX");
+    //     return -1;
+    // }
+    // if(iv->data==NULL){
+    //     puts("Vector data is NULL at size UINT64_MAX");
+    //     return -1;
+    // }
+    // delete_intVec(&iv,NULL);
+    // if(iv!=NULL){
+    //     puts("Vector is not null after being freed at UINT64_MAX");
+    //     return -1;
+    // }
 
     /* Negative size testing is not possible as parameter passed to the constructor
     is in itself an unsigned quantity. Hence, a negative number would just be
@@ -102,7 +106,11 @@ int main(void){
     }
     print_intVec(iv,print_int);
     putchar('\n');
-
+    delete_intVec(&iv, NULL);
+    if(iv!=NULL){
+        puts("Deleted vector not NULL");
+        return -1;
+    }
     // Construction from array tested
     
 
