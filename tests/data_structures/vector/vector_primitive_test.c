@@ -43,7 +43,7 @@ int main(void){
         puts("Empty vector not nulled");
         return -1;
     }
-    delete_intVec(iv,NULL);
+    delete_intVec(&iv,NULL);
     if(iv!=NULL){
         puts("Deleted integer vector still points to memory");
         return -1;
@@ -60,7 +60,7 @@ int main(void){
         puts("Vector data is NULL even though size is not 0");
         return -1;
     }
-    delete_intVec(iv, NULL);
+    delete_intVec(&iv, NULL);
     if(iv!=NULL){
         puts("Deleted vector of +ve size is not NULL");
         return -1;
@@ -76,7 +76,7 @@ int main(void){
         puts("Vector data is NULL at size UINT64_MAX");
         return -1;
     }
-    delete_intVec(iv,NULL);
+    delete_intVec(&iv,NULL);
     if(iv!=NULL){
         puts("Vector is not null after being freed at UINT64_MAX");
         return -1;

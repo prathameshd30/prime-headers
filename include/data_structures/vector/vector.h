@@ -173,19 +173,20 @@ bool linear_search_##NAME(NAME* obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), u
     }\
     return false;\
 }\
-bool delete_##NAME(NAME* obj, bool (*delete_type)(TYPE)){\
-    if(!obj){\
+bool delete_##NAME(NAME** obj, bool (*delete_type)(TYPE)){\
+    if(!obj || !*obj){\
         return false;\
     }\
-    if(obj->data){\
+    if((*obj)->data){\
         if(delete_type){\
-            for(uint64_t i = 0; i<obj->size; ++i){\
-                delete_type(obj->data[i]);\
+            for(uint64_t i = 0; i<(*obj)->size; ++i){\
+                delete_type((*obj)->data[i]);\
             }\
         }\
-        free(obj->data);\
+        free((*obj)->data);\
     }\
-    free(obj);\
+    free(*(obj));\
+    *obj = NULL;\
     return true;\
 }\
 bool clear_##NAME(NAME* obj, bool (*delete_type)(TYPE), TYPE val){\
