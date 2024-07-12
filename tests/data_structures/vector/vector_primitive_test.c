@@ -7,6 +7,8 @@
 #include "vector.h"
 #include "bubble_sort.h"
 
+#define ARRAY_SIZE 10
+
 DEFINE_VECTOR(intVec,int)
 DEFINE_BUBBLE_SORT_ARR(intArr,int)
 
@@ -27,6 +29,7 @@ bool int_is_equal(int a, int b){
 }
 
 int main(void){
+    // Testing of 0 sized constructor
     intVec* iv = new_intVec(0);
     if(!iv){
         puts("Failed to create int_vector");
@@ -40,9 +43,77 @@ int main(void){
         puts("Empty vector not nulled");
         return -1;
     }
-    delete_intVec(iv,NULL);
+    delete_intVec(&iv,NULL);
+    if(iv!=NULL){
+        puts("Deleted integer vector still points to memory");
+        return -1;
+    }
 
+    // Testing of +ve sized constructor
     const uint64_t size = 10;
+    iv = new_intVec(size);
+    if(iv->size != size){
+        puts("Vector size incorrectly set");
+        return -1;
+    }
+    if(iv->data == NULL){
+        puts("Vector data is NULL even though size is not 0");
+        return -1;
+    }
+    delete_intVec(&iv, NULL);
+    if(iv!=NULL){
+        puts("Deleted vector of +ve size is not NULL");
+        return -1;
+    }
+    
+    // Test at uint64_t max (IMPRACTICAL, Roughly 73700 Petabytes of RAM needed)
+    // iv = new_intVec(UINT64_MAX);
+    // if(!iv){
+    //     puts("Vector not created cleanly at size UINT64_MAX");
+    //     return -1;
+    // }
+    // if(iv->size!=UINT64_MAX){
+    //     puts("Incorrect vector size set at UINT64_MAX");
+    //     return -1;
+    // }
+    // if(iv->data==NULL){
+    //     puts("Vector data is NULL at size UINT64_MAX");
+    //     return -1;
+    // }
+    // delete_intVec(&iv,NULL);
+    // if(iv!=NULL){
+    //     puts("Vector is not null after being freed at UINT64_MAX");
+    //     return -1;
+    // }
+
+    /* Negative size testing is not possible as parameter passed to the constructor
+    is in itself an unsigned quantity. Hence, a negative number would just be
+    converted to a (rather large) positive integer */
+
+    /* It was done this way to maximise the largest size supported by the vector,
+    though, in doing so, it transfers a burden onto the programmer to check
+    whatever size is passed in to the constructor, is +ve*/
+
+    
+    int arr[ARRAY_SIZE] = {0};
+    for(uint64_t i = 0; i<sizeof(arr)/sizeof(arr[0]); ++i){
+        arr[i] = i;
+    }
+    iv = construct_from_arr_intVec(arr,sizeof(arr)/sizeof(arr[0]));
+    if(iv->size != sizeof(arr)/sizeof(arr[0])){
+        puts("Vector size incorrectly set");
+        return -1;
+    }
+    print_intVec(iv,print_int);
+    putchar('\n');
+    delete_intVec(&iv, NULL);
+    if(iv!=NULL){
+        puts("Deleted vector not NULL");
+        return -1;
+    }
+    // Construction from array tested
+    
+
     iv = new_intVec(size);
 
     if(is_empty_intVec(iv)){
@@ -102,6 +173,6 @@ int main(void){
     
     // More tests required!
 
-    delete_intVec(iv,NULL);
+    delete_intVec(&iv,NULL);
     return 0;
 }

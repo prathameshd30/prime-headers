@@ -15,10 +15,12 @@ Initially, I was going to write it in the OOP C Pattern (pointers to functions i
 
 ### To Do
 - [x] Look into GitHub actions based testing
+- [x] Valgrind testing?
 - [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] Examples should try to break the framework as much as possible
-- [x] Valgrind testing?
+- [ ] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
+
 
 ### Checklist
 - Each function, with pointer params, should check for NULL for each pointer,
