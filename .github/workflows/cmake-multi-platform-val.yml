@@ -1,4 +1,4 @@
-name: CMake + CTest on multiple platforms, Valgrind on Ubuntu
+name: Multiplatform CMake Build, CTest, Valgrind Profiling
 
 on:
   workflow_dispatch:
@@ -86,7 +86,7 @@ jobs:
        pattern=".*LastTestsFailed.*.log"
        files=$(find /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/ -regex "$pattern")
        if [ -n "$files" ]; then
-       echo "Valgrind Failed, MemoryChecker files exist and are uploaded to Artifacts"
+       echo "Valgrind Failed, LastTestFailed files exist and are uploaded to Artifacts"
        exit 1
        else
        echo "Valgrind Passed"
