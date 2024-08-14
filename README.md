@@ -1,33 +1,41 @@
 # Prime Headers
 ## Header-only, type-safe, generic data structures and algorithms for C.
 
-### Testing
-[![CMake + CTest on multiple platforms](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
-[![CodeQL](https://github.com/prathameshd30/prime-headers/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/github-code-scanning/codeql)
+[![Multiplatform CMake Build, CTest, Valgrind Profiling](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
 
-Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
-
-It aims to be completely tested, across platforms, and memory profiled.
-
+Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects. It is fairly primitive for ease of use.
+It aims to have each data structure and algorithm thoroughly tested with primitive and pointer-to-structs examples.
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
-Initially, I was going to write it in the OOP C Pattern (pointers to functions inside structs), however as most people do not use the pattern, it would have hindered the usability of the framework. (Although it could be made in the future).
+It uses macros with arguments to generate the appropriate structs and functions at the preprocessing stage, leading to no runtime overhead. However, this approach has definite drawbacks, which are clarified further.
+
+### Features
+- [x] Header-only, generic, type-safe data structures and algorithms.
+- [x] Build tested on multiple platforms and compilers using CMake and GitHub actions.
+- [x] Unit tested using CTest.
+- [x] Memory profiled using Valgrind and CTest memcheck.
+- [x] Supports primitives as well as pointer-to-structs.
+
+### Currently Tested Platforms
+- Windows
+  - cl (MSVC)
+
+- Ubuntu
+  - gcc (GNU)
+  - clang (LLVM)
 
 ### To Do
 - [x] Look into GitHub actions based testing
 - [x] Valgrind testing?
 - [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
 - [ ] Write primitive as well as pointer-to-structs examples
-- [ ] Examples should try to break the framework as much as possible
-- [ ] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
+- [ ] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable
 
-
-### Checklist
-- Each function, with pointer params, should check for NULL for each pointer,
+### Checklist for each PR
+- Each function, with pointer params, should check for NULL for each pointer.
 - Have a thorough deletion mechanism for each data structure.
-- Set unused pointers to return wherever applicable.
-- Library functions in snake_case_##ANY_SUFFIX
-- All reallocs need to be first assigned to temp variables
+- Library functions in snake_case_##ANY_SUFFIX.
+- All reallocs need to be first assigned to temp variables, so as to not lose access to data.
 
 ### Data structures and algorithms implemented
 
@@ -66,7 +74,6 @@ Initially, I was going to write it in the OOP C Pattern (pointers to functions i
 - [ ] Merge Sort
 - [ ] Quick sort
 
-
 ### Pros
 
 1. Relatively easy use of generic data structures and algorithms while being type-safe.
@@ -76,6 +83,7 @@ Initially, I was going to write it in the OOP C Pattern (pointers to functions i
 
 1. This method is optimised for ease of use (probably for beginners/learners because it primarily works with pointers to structs), however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
 2. **Poor support** (slow) for Intellisense and similar code intelligence and autocompletion tools.
+3.  As all the functions are defined in the macro, with everything being in C, there is no way to apply **access modifiers** to helper functions for a cleaner interface.
 
 > This project is a side-effect of trying to develop a command-line tool for easier use of generic data structures for C, which splits the interface and the function definitions, leading to better compilation times.
 
