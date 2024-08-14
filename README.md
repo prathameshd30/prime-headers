@@ -1,7 +1,7 @@
 # Prime Headers
 ## Header-only, type-safe, generic data structures and algorithms for C.
 
-[![CMake + CTest on multiple platforms](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
+[![Multiplatform CMake Build, CTest, Valgrind Profiling](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
 
 Prime Headers is (aiming to be) a headers-only, easy to use, type-safe way to use generic data structures and algorithms in C Projects.
 
@@ -87,8 +87,7 @@ $ ctest
 
 1. This method is optimised for ease of use (probably for beginners/learners because it primarily works with pointers to structs), however, defining multiple data structures in the same file may (read WILL) lead to **slower compilation times** due to large compilation units because of the coupling of interfaces (headers & prototypes) and the actual functionality (function definitions) itself.
 2. **Poor support** (slow) for Intellisense and similar code intelligence and autocompletion tools.
-
-> This project is a side-effect of trying to develop a command-line tool for easier use of generic data structures for C, which splits the interface and the function definitions, leading to better compilation times.
+3.  As all the functions are defined in the macro, with everything being in C, there is no way to apply **access modifiers** to helper functions for a cleaner interface.
 
 ## Some helpful projects which helped me develop this
 
