@@ -3,8 +3,9 @@ cmake_minimum_required(VERSION 3.28) # Needed to reduce version for compatibilit
 project(prime-headers)
 
 set(CMAKE_C_STANDARD 11)
-
 set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
+##set(CMAKE_BUILD_TYPE Release)
 
 # deliberately not including these subdirectories by glob regex as precaution
 
