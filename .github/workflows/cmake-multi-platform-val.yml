@@ -1,6 +1,15 @@
 name: Multiplatform CMake Build, CTest, Valgrind Profiling
 
 on:
+  push:
+    branches:
+     - main
+  pull_request:
+    branches:
+     - main
+    paths-ignore:
+     - 'README.md'
+     
   workflow_dispatch:
 
 jobs:
