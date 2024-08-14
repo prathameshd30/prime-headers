@@ -10,7 +10,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 include_directories(include/algorithms/sort)
 include_directories(include/data_structures/vector)
-
+include_directories(util)
 
 enable_testing()
 include(CTest)

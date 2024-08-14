@@ -60,7 +60,6 @@ bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
         return false;\
     }\
     if(index > obj->size - 1){\
-        val = NULL;\
         return false;\
     }\
     *val = obj->data[index];\
