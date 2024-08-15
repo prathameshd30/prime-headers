@@ -33,7 +33,7 @@ It uses CMake as the build system, both AddressSanitizer and Valgrind for checki
 - [x] Build tested on multiple platforms and compilers using CMake and GitHub actions.
 - [x] Unit tested using CTest.
 - [x] Memory profiled using Valgrind and CTest memcheck.
-- [x] Supports primitives as well as pointer-to-structs.
+- [x] Supports primitive data structures as well as pointer-to-structs.
 
 ### Currently Tested Platforms
 - Windows
