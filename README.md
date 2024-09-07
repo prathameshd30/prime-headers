@@ -56,9 +56,8 @@ It uses CMake as the build system, both AddressSanitizer and Valgrind for checki
 ### Checklist
 - Each function, with pointer params, should check for NULL for each pointer param,
 - Have a thorough deletion mechanism for each data structure.
-- Set unused pointers to return wherever applicable.
 - Library functions in snake_case_##ANY_SUFFIX().
-- All reallocs need to be first assigned to temp variables to avoid losing data.
+- All reallocs need to be first assigned to temp variables, so as to not lose access to data..
 
 ### To build and test locally
 After ensuring you have the prerequisite dependencies (CMake and Valgrind). run these commands in the root directory of the repository.
