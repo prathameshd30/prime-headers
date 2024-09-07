@@ -11,7 +11,7 @@ It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undream
 
 It uses macros with arguments to generate the appropriate structs and functions at the preprocessing stage, leading to no runtime overhead. However, this approach has definite drawbacks, which are clarified further.
 
-It uses CMake as the build system, both AddressSanitizer and Valgrind for checking memory safety and GitHub Ations for checking cross-platform compatibility.
+It uses CMake as the build system, Valgrind for checking memory safety and GitHub Ations for checking cross-platform compatibility.
 
 ### Features
 - [x] Header-only, generic, type-safe data structures and algorithms.
@@ -28,7 +28,7 @@ It uses CMake as the build system, both AddressSanitizer and Valgrind for checki
 - [x] Look into GitHub actions based testing
 - [x] Valgrind testing?
 - [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
-- [x] AddressSanitizer too?
+- [ ] AddressSanitizer too?
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] [Technical Debt] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
 
