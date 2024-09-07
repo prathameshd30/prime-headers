@@ -85,22 +85,21 @@ int main(void){
         }
     }
     
-    //Test that out of bounds is invalid
+    //Test that access at out of bounds is invalid
     test(!at_intVec(iv,size,&got_element),"Out of bounds is valid.")
 
     for(uint64_t i = 0; i<iv->size; ++i){
-        if(!set_at_intVec(iv,i,i)){
-            puts("set_at failing");
-        }
+        test(set_at_intVec(iv,i,i),"set_at failing")
+        test(at_intVec(iv,i,&got_element) && got_element == iv->data[i], "at_failing or wrong value")
     }
     print_intVec(iv,print_int);
     putchar('\n');
 
-    //Test out of bounds
-    if(set_at_intVec(iv,iv->size,0)){
-        puts("set_at out of bounds being accepted");
-    }
+    //Test set at out of bounds
 
+    test(!set_at_intVec(iv,iv->size,0),"set_at out of bounds accepted")
+
+    //Test set whole
     if(!set_whole_intVec(iv,0)){
         puts("set_at_whole failed with non-empty vector");
         return -1;
