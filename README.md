@@ -9,24 +9,9 @@ It aims to be completely tested, across platforms, and memory profiled.
 
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
-Initially, I was going to write it in the OOP C Pattern (pointers to functions inside structs), however as most people do not use the pattern, it would have hindered the usability of the framework. (Although it is still on the cards).
+It uses macros with arguments to generate the appropriate structs and functions at the preprocessing stage, leading to no runtime overhead. However, this approach has definite drawbacks, which are clarified further.
 
 It uses CMake as the build system, both AddressSanitizer and Valgrind for checking memory safety and GitHub actions for checking cross-platform compatibility.
-
-### Features
-- [x] Header-only, generic, type-safe data structures and algorithms.
-- [x] Build tested on multiple platforms and compilers using CMake and GitHub actions.
-- [x] Unit tested using CTest.
-- [x] Memory profiled using Valgrind and CTest memcheck.
-- [x] Supports primitives as well as pointer-to-structs.
-
-### Currently Tested Platforms
-- Windows
-  - cl (MSVC)
-
-- Ubuntu
-  - gcc (GNU)
-  - clang (LLVM)
 
 ### Features
 - [x] Header-only, generic, type-safe data structures and algorithms.
@@ -52,12 +37,11 @@ It uses CMake as the build system, both AddressSanitizer and Valgrind for checki
 - [ ] Examples should try to break the framework as much as possible
 - [ ] [Technical Debt] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
 
-
 ### Checklist
-- Each function, with pointer params, should check for NULL for each pointer param,
+- Each function, with pointer params, should check for NULL for each pointer param.
 - Have a thorough deletion mechanism for each data structure.
-- Library functions in snake_case_##ANY_SUFFIX().
-- All reallocs need to be first assigned to temp variables, so as to not lose access to data..
+- Library functions in snake_case_##ANY_SUFFIX()..
+- All reallocs need to be first assigned to temp variables, so as to not lose access to data.
 
 ### To build and test locally
 After ensuring you have the prerequisite dependencies (CMake and Valgrind). run these commands in the root directory of the repository.
