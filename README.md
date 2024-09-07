@@ -3,11 +3,15 @@
 
 [![Multiplatform CMake Build, CTest, Valgrind Profiling](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
 
-Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects. It is fairly primitive for ease of use.
+Prime Headers is (aiming to be) a headers-only, easy to use, type-safe way to use generic data structures and algorithms in C Projects.
+
 It aims to have each data structure and algorithm thoroughly tested with primitive and pointer-to-structs examples.
+
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
 It uses macros with arguments to generate the appropriate structs and functions at the preprocessing stage, leading to no runtime overhead. However, this approach has definite drawbacks, which are clarified further.
+
+It uses CMake as the build system, Valgrind for checking memory safety and GitHub Ations for checking cross-platform compatibility.
 
 ### Features
 - [x] Header-only, generic, type-safe data structures and algorithms.
@@ -20,22 +24,29 @@ It uses macros with arguments to generate the appropriate structs and functions 
 - Windows
   - cl (MSVC)
 
-- Ubuntu
-  - gcc (GNU)
-  - clang (LLVM)
-
 ### To Do
 - [x] Look into GitHub actions based testing
 - [x] Valgrind testing?
 - [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
+- [ ] AddressSanitizer too?
 - [ ] Write primitive as well as pointer-to-structs examples
-- [ ] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable
+- [ ] [Technical Debt] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
 
-### Checklist for each PR
-- Each function, with pointer params, should check for NULL for each pointer.
+### Checklist
+- Each function, with pointer params, should check for NULL for each pointer param.
 - Have a thorough deletion mechanism for each data structure.
-- Library functions in snake_case_##ANY_SUFFIX.
+- Library functions in snake_case_##ANY_SUFFIX()..
 - All reallocs need to be first assigned to temp variables, so as to not lose access to data.
+
+### To build and test locally
+After ensuring you have the prerequisite dependencies (CMake and Valgrind). run these commands in the root directory of the repository.
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
+$ ctest
+```
 
 ### Data structures and algorithms implemented
 

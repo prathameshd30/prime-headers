@@ -3,11 +3,13 @@
 //For manual valgrind testing
 // #include "../../../include/data_structures/vector/vector.h"
 // #include "../../../include/algorithms/sort/bubble_sort.h"
+// #include "../../../util/testing_macro.h"
 
 #include "vector.h"
 #include "bubble_sort.h"
+#include "testing_macro.h"
 
-#define ARRAY_SIZE 10
+#define ARRAY_SIZE 10 // Is not a const global variable due to it being used for vanilla array size
 
 DEFINE_VECTOR(intVec,int)
 DEFINE_BUBBLE_SORT_ARR(intArr,int)
@@ -31,129 +33,75 @@ bool int_is_equal(int a, int b){
 int main(void){
     // Testing of 0 sized constructor
     intVec* iv = new_intVec(0);
-    if(!iv){
-        puts("Failed to create int_vector");
-        return -1;
-    }
-    if(!is_empty_intVec(iv)){
-        puts("Vector with zero size is not empty");
-        return -1;
-    }
-    if(iv->data != NULL){
-        puts("Empty vector not nulled");
-        return -1;
-    }
+    test(iv!=NULL,"Vector could not be created."); //Written !=NULL for readability
+    test(is_empty_intVec(iv),"Zero sized vector is not empty.");
+    test(iv->data == NULL, "Empty vector data not NULLed.");
     delete_intVec(&iv,NULL);
-    if(iv!=NULL){
-        puts("Deleted integer vector still points to memory");
-        return -1;
-    }
+    test(iv==NULL, "Deleted integer vector still points to memory.");
 
     // Testing of +ve sized constructor
     const uint64_t size = 10;
     iv = new_intVec(size);
-    if(iv->size != size){
-        puts("Vector size incorrectly set");
-        return -1;
-    }
-    if(iv->data == NULL){
-        puts("Vector data is NULL even though size is not 0");
-        return -1;
-    }
+    test(iv->size == size, "Vector size incorrectly set.");
+    test(iv->data != NULL, "Integer vector data is NULLed.");
     delete_intVec(&iv, NULL);
-    if(iv!=NULL){
-        puts("Deleted vector of +ve size is not NULL");
-        return -1;
-    }
+    test(iv==NULL,"Deleted integer vector still points to memory")
+
+    /*Negative size parameter not possible due to use of uint64, transfers
+    responsibility of checking size to the programmer */
     
-    // Test at uint64_t max (IMPRACTICAL, Roughly 73700 Petabytes of RAM needed)
-    // iv = new_intVec(UINT64_MAX);
-    // if(!iv){
-    //     puts("Vector not created cleanly at size UINT64_MAX");
-    //     return -1;
-    // }
-    // if(iv->size!=UINT64_MAX){
-    //     puts("Incorrect vector size set at UINT64_MAX");
-    //     return -1;
-    // }
-    // if(iv->data==NULL){
-    //     puts("Vector data is NULL at size UINT64_MAX");
-    //     return -1;
-    // }
-    // delete_intVec(&iv,NULL);
-    // if(iv!=NULL){
-    //     puts("Vector is not null after being freed at UINT64_MAX");
-    //     return -1;
-    // }
-
-    /* Negative size testing is not possible as parameter passed to the constructor
-    is in itself an unsigned quantity. Hence, a negative number would just be
-    converted to a (rather large) positive integer */
-
-    /* It was done this way to maximise the largest size supported by the vector,
-    though, in doing so, it transfers a burden onto the programmer to check
-    whatever size is passed in to the constructor, is +ve*/
-
-    
+    // Construct from raw array.
     int arr[ARRAY_SIZE] = {0};
     for(uint64_t i = 0; i<sizeof(arr)/sizeof(arr[0]); ++i){
         arr[i] = i;
     }
     iv = construct_from_arr_intVec(arr,sizeof(arr)/sizeof(arr[0]));
-    if(iv->size != sizeof(arr)/sizeof(arr[0])){
-        puts("Vector size incorrectly set");
-        return -1;
-    }
+    test(iv->size == sizeof(arr)/sizeof(arr[0]), "Size of vector object incorrectly set.");
     print_intVec(iv,print_int);
     putchar('\n');
     delete_intVec(&iv, NULL);
-    if(iv!=NULL){
-        puts("Deleted vector not NULL");
-        return -1;
-    }
-    // Construction from array tested
+    test(iv==NULL, "Deleted integer vector still points to memory.");
     
+    // Test construction from array when NULL ptr
+    int* test_array = NULL;
+    iv = construct_from_arr_intVec(test_array,ARRAY_SIZE);
+    test(iv==NULL, "Construct vector from array returns non NULL when NULL array.")
 
+    // Test is_empty with size and set_whole
     iv = new_intVec(size);
+    test(!is_empty_intVec(iv), "Non-empty vector triggers is empty.")
 
-    if(is_empty_intVec(iv)){
-        puts("Non-empty vector triggers isEmpty");
-        return -1;
-    }
+    //Test set_whole and at_vec
     const int element = 10;
     set_whole_intVec(iv,element);
+    int got_element;
     print_intVec(iv,print_int);
     putchar('\n');
-    int return_element; //Get result of at in param for easy out of bound check
-    for(uint64_t i = 0; i<iv->size; ++i){
-        if(!at_intVec(iv,i,&return_element)){
-            puts("Tried to at_vec out of bounds");
-            return -1;
+    for (uint64_t i = 0; i < iv->size; ++i)
+    {
+        if(at_intVec(iv,i,&got_element)){
+            test(got_element==element,"Set whole vector not setting to element correctly.");
         }
-        if(return_element != element){
-            puts("set_at_whole wrong/incomplete");
-            return -1;
+        else{
+            test(false,"at_vec failing")
         }
     }
-    //Test that out of bounds is invalid
-    if(at_intVec(iv,size,&return_element)){
-        puts("Out of bounds being valid");
-        return -1;
-    }
+    
+    //Test that access at out of bounds is invalid
+    test(!at_intVec(iv,size,&got_element),"Out of bounds is valid.")
 
     for(uint64_t i = 0; i<iv->size; ++i){
-        if(!set_at_intVec(iv,i,i)){
-            puts("set_at failing");
-        }
+        test(set_at_intVec(iv,i,i),"set_at failing")
+        test(at_intVec(iv,i,&got_element) && got_element == iv->data[i], "at_failing or wrong value")
     }
     print_intVec(iv,print_int);
     putchar('\n');
 
-    //Test out of bounds
-    if(set_at_intVec(iv,iv->size,0)){
-        puts("set_at out of bounds being accepted");
-    }
 
+    //Test set at out of bounds
+    test(!set_at_intVec(iv,iv->size,0),"set_at out of bounds accepted")
+
+    //Test set whole
     if(!set_whole_intVec(iv,0)){
         puts("set_at_whole failed with non-empty vector");
         return -1;
@@ -172,7 +120,6 @@ int main(void){
     }
     
     // More tests required!
-
     delete_intVec(&iv,NULL);
     return 0;
 }

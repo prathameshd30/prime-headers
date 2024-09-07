@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28) # Needed to reduce version for compatibility with MS VS 2022
 
-project(prime-headers)
+project(prime-headers C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -11,7 +11,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include/algorithms/sort)
 include_directories(include/data_structures/vector)
-
+include_directories(util)
 
 enable_testing()
 include(CTest)
