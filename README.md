@@ -103,5 +103,3 @@ $ ctest
 1. Thought this was an original idea, but this repository I found later implemented this already - https://github.com/mystborn/GenericDataStructures
 
 2. I got the idea for the need of type-safe data structures by seeing this repository, otherwise it is perfect, especially the error handling is **chef's kiss** - https://github.com/MostafaTwfiq/C-DataStructures-And-Algorithms
-
-testing README ignore
