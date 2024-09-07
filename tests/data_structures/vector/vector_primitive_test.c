@@ -35,7 +35,7 @@ int main(void){
     intVec* iv = new_intVec(0);
     test(iv!=NULL,"Vector could not be created."); //Written !=NULL for readability
     test(is_empty_intVec(iv),"Zero sized vector is not empty.");
-    test(iv->data != NULL, "Empty vector data not NULLed.");
+    test(iv->data == NULL, "Empty vector data not NULLed.");
     delete_intVec(&iv,NULL);
     test(iv==NULL, "Deleted integer vector still points to memory.");
 
