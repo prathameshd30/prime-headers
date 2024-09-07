@@ -70,6 +70,8 @@ int main(void){
     // Test is_empty with size and set_whole
     iv = new_intVec(size);
     test(!is_empty_intVec(iv), "Non-empty vector triggers is empty.")
+
+    //Test set_whole and at_vec
     const int element = 10;
     set_whole_intVec(iv,element);
     int got_element;
@@ -81,7 +83,7 @@ int main(void){
             test(got_element==element,"Set whole vector not setting to element correctly.");
         }
         else{
-            printf("File: %s Line: %llu at_intVec returning false within bounds.\n",__FILE__,__LINE__);
+            test(false,"at_vec failing")
         }
     }
     
@@ -95,8 +97,8 @@ int main(void){
     print_intVec(iv,print_int);
     putchar('\n');
 
-    //Test set at out of bounds
 
+    //Test set at out of bounds
     test(!set_at_intVec(iv,iv->size,0),"set_at out of bounds accepted")
 
     //Test set whole
@@ -118,7 +120,6 @@ int main(void){
     }
     
     // More tests required!
-
     delete_intVec(&iv,NULL);
     return 0;
 }

@@ -26,8 +26,18 @@ Initially, I was going to write it in the OOP C Pattern (pointers to functions i
 - Each function, with pointer params, should check for NULL for each pointer,
 - Have a thorough deletion mechanism for each data structure.
 - Set unused pointers to return wherever applicable.
-- Library functions in snake_case_##ANY_SUFFIX
-- All reallocs need to be first assigned to temp variables
+- Library functions in snake_case_##ANY_SUFFIX().
+- All reallocs need to be first assigned to temp variables.
+
+### To build and test locally
+After ensuring you have the prerequisite dependencies (CMake and Valgrind). run these commands in the root directory of the repository.
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
+$ ctest
+```
 
 ### Data structures and algorithms implemented
 

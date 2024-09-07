@@ -7,12 +7,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STRINGIZE(TEXT) #TEXT
-#define STRING_LINE STRINGIZE(__LINE__)
-
+// Can double stringize but tbh do not understand it completely. Hence used printf instead of puts.
 #define test(EXPECTED_CONDITION, FAILURE_MESSAGE)\
-if(!EXPECTED_CONDITION){\
-    puts("File:"__FILE__ " Line:" STRING_LINE  #EXPECTED_CONDITION " : " FAILURE_MESSAGE);\
+if(!(EXPECTED_CONDITION)){\
+    printf("File:"__FILE__ " Line:%d " #EXPECTED_CONDITION " : " FAILURE_MESSAGE "\n", __LINE__);\
     exit(-1);\
 }
 
