@@ -1,33 +1,34 @@
 # Prime Headers
 ## Header-only, type-safe, generic data structures and algorithms for C.
 
-### Testing
 [![CMake + CTest on multiple platforms](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/cmake-multi-platform-val.yml)
-[![CodeQL](https://github.com/prathameshd30/prime-headers/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prathameshd30/prime-headers/actions/workflows/github-code-scanning/codeql)
 
-Prime Headers is (aiming to be) a headers-only, easy to use, strongly typed way to use generic data structures and algorithms in C Projects.
+Prime Headers is (aiming to be) a headers-only, easy to use, type-safe way to use generic data structures and algorithms in C Projects.
 
 It aims to be completely tested, across platforms, and memory profiled.
 
 It works primarily by ~~ab~~using the C preprocessor to a scale hitherto undreamt of (I have later realised that this scale was indeed dreamt to).
 
-Initially, I was going to write it in the OOP C Pattern (pointers to functions inside structs), however as most people do not use the pattern, it would have hindered the usability of the framework. (Although it could be made in the future).
+Initially, I was going to write it in the OOP C Pattern (pointers to functions inside structs), however as most people do not use the pattern, it would have hindered the usability of the framework. (Although it is still on the cards).
+
+It uses CMake as the build system, both AddressSanitizer and Valgrind for checking memory safety and GitHub actions for checking cross-platform compatibility.
 
 ### To Do
 - [x] Look into GitHub actions based testing
 - [x] Valgrind testing?
 - [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
+- [x] AddressSanitizer too?
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] Examples should try to break the framework as much as possible
-- [ ] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
+- [ ] [Technical Debt] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
 
 
 ### Checklist
-- Each function, with pointer params, should check for NULL for each pointer,
+- Each function, with pointer params, should check for NULL for each pointer param,
 - Have a thorough deletion mechanism for each data structure.
 - Set unused pointers to return wherever applicable.
 - Library functions in snake_case_##ANY_SUFFIX().
-- All reallocs need to be first assigned to temp variables.
+- All reallocs need to be first assigned to temp variables to avoid losing data.
 
 ### To build and test locally
 After ensuring you have the prerequisite dependencies (CMake and Valgrind). run these commands in the root directory of the repository.
