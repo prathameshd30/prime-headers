@@ -86,10 +86,9 @@ int main(void){
             test(false,"at_vec failing")
         }
     }
-    
+
     //Test that access at out of bounds is invalid
     test(!at_intVec(iv,size,&got_element),"Out of bounds is valid.")
-
     for(uint64_t i = 0; i<iv->size; ++i){
         test(set_at_intVec(iv,i,i),"set_at failing")
         test(at_intVec(iv,i,&got_element) && got_element == iv->data[i], "at_failing or wrong value")
