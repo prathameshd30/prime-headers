@@ -30,7 +30,7 @@ NAME* new_##NAME(uint64_t size){ /*Size is set only after allocation of vector->
     new_obj->size = size;\
     return new_obj;\
 }\
-NAME* construct_from_arr_##NAME(TYPE* arr, uint64_t size){\
+NAME* construct_from_arr_##NAME(TYPE* const arr, uint64_t size){\
     if(!arr){\
         return NULL;\
     }\
@@ -46,7 +46,7 @@ NAME* construct_from_arr_##NAME(TYPE* arr, uint64_t size){\
     }\
     return new_obj;\
 }\
-bool is_empty_##NAME(NAME* obj){\
+bool is_empty_##NAME(const NAME* const obj){\
     if(!obj){\
         return false;\
     }\
@@ -55,7 +55,7 @@ bool is_empty_##NAME(NAME* obj){\
     }\
     return false;\
 }\
-bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
+bool at_##NAME(const NAME* const obj, uint64_t index, TYPE* const val){\
     if(!obj || !val){\
         return false;\
     }\
@@ -65,17 +65,20 @@ bool at_##NAME(NAME* obj, uint64_t index, TYPE* val){\
     *val = obj->data[index];\
     return true;\
 }\
-bool set_at_##NAME(NAME* obj, uint64_t index, TYPE val){\
+bool set_at_##NAME(const NAME* const obj, uint64_t index, TYPE val){\
     if(!obj){\
         return false;\
     }\
-    if(index > obj->size -1){\
+    if(obj->size == 0){\
+        return false;\
+    }\
+    if(index > obj->size - 1){\
         return false;\
     }\
     obj->data[index] = val;\
     return true;\
 }\
-bool set_whole_##NAME(NAME* obj, TYPE val){\
+bool set_whole_##NAME(const NAME* const obj, TYPE val){\
     if(!obj || !(obj->data) || (obj->size == 0)){\
         return false;\
     }\
@@ -84,7 +87,7 @@ bool set_whole_##NAME(NAME* obj, TYPE val){\
     }\
     return true;\
 }\
-bool add_at_end_##NAME(NAME* obj, TYPE val){\
+bool add_at_end_##NAME(NAME* const obj, TYPE val){\
     if(!obj){\
         return false;\
     }\
@@ -97,7 +100,7 @@ bool add_at_end_##NAME(NAME* obj, TYPE val){\
     obj->data[obj->size - 1] = val;\
     return true;\
 }\
-bool add_at_beginning_##NAME(NAME* obj, TYPE val){\
+bool add_at_beginning_##NAME(NAME* const obj, TYPE val){\
     if(!obj){\
         return false;\
     }\
@@ -113,7 +116,7 @@ bool add_at_beginning_##NAME(NAME* obj, TYPE val){\
     obj->data[0] = val;\
     return true;\
 }\
-bool remove_from_beginning_##NAME(NAME* obj, TYPE* val, bool (*delete_element)(TYPE)){\
+bool remove_from_beginning_##NAME(NAME* const obj, TYPE* const val, bool (*delete_element)(TYPE)){\
     if(!obj || !obj->data || obj->size == 0){\
         return false;\
     }\
@@ -134,7 +137,7 @@ bool remove_from_beginning_##NAME(NAME* obj, TYPE* val, bool (*delete_element)(T
     --(obj->size);\
     return true;\
 }\
-bool remove_from_end_##NAME(NAME* obj, TYPE* val, bool (*delete_type)(TYPE)){\
+bool remove_from_end_##NAME(NAME* const obj, TYPE* const val, bool (*delete_type)(TYPE)){\
     if(!obj || !obj->data || obj->size == 0){\
         return false;\
     }\
@@ -152,7 +155,7 @@ bool remove_from_end_##NAME(NAME* obj, TYPE* val, bool (*delete_type)(TYPE)){\
     --(obj->size);\
     return true;\
 }\
-void print_##NAME(NAME* obj, void (*print_element)(TYPE)){\
+void print_##NAME(const NAME* const obj, void (*print_element)(TYPE)){\
     if(!obj || !print_element || !(obj->data)){\
         return;\
     }\
@@ -160,7 +163,7 @@ void print_##NAME(NAME* obj, void (*print_element)(TYPE)){\
         print_element(obj->data[i]);\
     }\
 }\
-bool linear_search_##NAME(NAME* obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), uint64_t *index){\
+bool linear_search_##NAME(const NAME* const obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), uint64_t* const index){\
     if(!obj || !obj->data || obj->size == 0 || !(comparator)){\
         return false;\
     }\
@@ -172,7 +175,7 @@ bool linear_search_##NAME(NAME* obj, TYPE ref ,bool (*comparator)(TYPE, TYPE), u
     }\
     return false;\
 }\
-bool delete_##NAME(NAME** obj, bool (*delete_type)(TYPE)){\
+bool delete_##NAME(NAME** const obj, bool (*delete_type)(TYPE)){\
     if(!obj || !*obj){\
         return false;\
     }\
@@ -188,7 +191,7 @@ bool delete_##NAME(NAME** obj, bool (*delete_type)(TYPE)){\
     *obj = NULL;\
     return true;\
 }\
-bool clear_##NAME(NAME* obj, bool (*delete_type)(TYPE), TYPE val){\
+bool clear_##NAME(NAME* const obj, bool (*delete_type)(TYPE)){\
     if(!obj){\
         return false;\
     }\
