@@ -21,6 +21,9 @@ It uses CMake as the build system, Valgrind for checking memory safety and GitHu
 - [x] Supports primitive data structures as well as pointer-to-structs.
 
 ### Currently Tested Platforms
+- Ubuntu
+  - gcc
+  - clang
 - Windows
   - cl (MSVC)
 
@@ -28,7 +31,7 @@ It uses CMake as the build system, Valgrind for checking memory safety and GitHu
 - [x] Look into GitHub actions based testing
 - [x] Valgrind testing?
 - [x] How can I integrate CMake, CTest, GitHub actions and Valgrind?
-- [ ] AddressSanitizer too?
+- [ ] AddressSanitizer too? (GitHub actions cannot fin ASan or LSan)
 - [ ] Write primitive as well as pointer-to-structs examples
 - [ ] [Technical Debt] Use constant pointers, pointers to constants and constant pointers to constant wherever applicable.
 
