@@ -42,13 +42,15 @@ It uses CMake as the build system, Valgrind for checking memory safety and GitHu
 - All reallocs need to be first assigned to temp variables, so as to not lose access to data.
 
 ### To build and test locally
-After ensuring you have the prerequisite dependencies (CMake and Valgrind). run these commands in the root directory of the repository.
+After ensuring you have the prerequisite dependencies (CMake and Valgrind), run these commands in the root directory of the repository.
 ```bash
+$ pwd # Make sure you are in the root directory of the repository
 $ mkdir build
 $ cd build
 $ cmake ..
 $ cmake --build .
-$ ctest
+$ ctest # Just run the tests without memory profiling
+$ ctest -T memcheck -C Debug --test-dir ../build # Valgrind memcheck and test
 ```
 
 ### Data structures and algorithms implemented
