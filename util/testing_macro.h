@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Can double stringize but tbh do not understand it completely. Hence used printf instead of puts.
+// Can double stringize for better memory safety but tbh do not understand it completely. Hence used printf instead of puts.
 #define test(EXPECTED_CONDITION, FAILURE_MESSAGE)\
 if(!(EXPECTED_CONDITION)){\
     printf("File:"__FILE__ " Line:%d " #EXPECTED_CONDITION " : " FAILURE_MESSAGE "\n", __LINE__);\
