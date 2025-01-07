@@ -1,0 +1,110 @@
+name: Multiplatform CMake Build, CTest, Valgrind Profiling
+
+on:
+  push:
+    branches:
+     - main
+    paths-ignore:
+     - '**/*.md'
+     - '.github/**'
+  pull_request:
+    branches:
+     - main
+    paths-ignore:
+     - '**/README.md'
+     - '.github/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      #For testing all configs, true for report first failure and stop
+      fail-fast: false
+      # 1. <Windows, Release, latest MSVC compiler toolchain on the default runner image, default generator>
+      # 2. <Linux, Release, latest GCC compiler toolchain on the default runner image, default generator>
+      # 3. <Linux, Release, latest Clang compiler toolchain on the default runner image, default generator>
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        build_type: [Release]
+        c_compiler: [gcc, clang, cl]
+        include:
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+        exclude:
+          - os: windows-latest
+            c_compiler: gcc
+          - os: windows-latest
+            c_compiler: clang
+          - os: ubuntu-latest
+            c_compiler: cl
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Install Valgrind if not present
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+       sudo apt-get update 
+       sudo apt-get -y install valgrind
+
+
+    - name: Configure CMake
+      run: >
+        cmake -B ${{ steps.strings.outputs.build-output-dir }}
+        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        -S ${{ github.workspace }}
+
+    - name: Build
+      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+    - name: Test
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      run: ctest --build-config ${{ matrix.build_type }}
+
+    - name: CTest-Memcheck-Valgrind
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+       ctest -T memcheck -C Debug --test-dir build 
+       ctest_output_code=$?
+    
+    - name: CTest Memcheck (Valgrind) Upload Results
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v4
+      with:
+        name: memcheck-results-${{matrix.c_compiler}}
+        path: /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/MemoryChecker.*
+        if-no-files-found: ignore
+
+    - name: Check if valgrind failed 
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+       pattern=".*LastTestsFailed.*.log"
+       files=$(find /home/runner/work/prime-headers/prime-headers/build/Testing/Temporary/ -regex "$pattern")
+       if [ -n "$files" ]; then
+       echo "Valgrind Failed, LastTestFailed files exist and are uploaded to Artifacts"
+       exit 1
+       else
+       echo "Valgrind Passed"
+       fi
+
+    
+
+
+    
