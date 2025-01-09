@@ -24,6 +24,4 @@ _deps
 CMakeUserPresets.json
 DartConfiguration.tcl
 
-#Misc
-string/
 local-test.bash
